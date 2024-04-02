@@ -28,6 +28,13 @@ body {
   background-color: slategrey;
 }
 
+.hamberger-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  height: 40px;
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -81,4 +88,12 @@ nav {
 a {
   text-decoration-line: none;
   color: black;
+}
+
+hr {
+  width: 90%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  border-top: 4px solid white;
+  border-radius: 10px;
 }
