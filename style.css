@@ -39,7 +39,8 @@ main {
   display: flex;
   flex-direction: column;
   flex: 6;
-  background-color: black;
+  padding: 1%;
+  color: black;
 }
 
 footer {
