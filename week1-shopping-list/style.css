@@ -38,8 +38,9 @@ section {
 main {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: 12px;
-  min-width: 1200px;
+  width: 1500px;
   color: black;
 }
 
@@ -167,4 +168,11 @@ header h1 {
 .like:hover {
   color: red;
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .item-wrapper {
+    width: 330px;
+    height: 440px;
+  }
 }
