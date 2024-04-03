@@ -102,6 +102,7 @@ nav {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
+  width: 80vw;
 }
 
 .item-wrapper {
@@ -137,12 +138,12 @@ nav {
 }
 
 .hamberger-wrapper hr {
-  width: 90%;
-  height: 10%;
   margin-top: 5%;
   margin-bottom: 5%;
   border-radius: 10px;
   border: 1px solid white;
+  width: 90%;
+  height: 10%;
   background-color: white;
 }
 
@@ -164,8 +165,8 @@ header h1 {
 }
 
 .item-wrapper img {
-  object-fit: contain;
   border-radius: 8px;
+  object-fit: contain;
   overflow: hidden;
   width: 90%;
   height: 300px;
@@ -182,18 +183,29 @@ header h1 {
 }
 
 .banner-wrapper img {
-  object-fit: contain;
   border-radius: 8px;
+  object-fit: contain;
   overflow: hidden;
   width: 160px;
   height: 160px;
   background-color: white;
 }
 
+@media (max-width: 1100px) {
+  .item-wrapper {
+    gap: 30px;
+    width: 270px;
+    height: 360px;
+    font-size: large;
+  }
+}
+
 @media (max-width: 900px) {
   .item-wrapper {
-    width: 330px;
-    height: 440px;
+    gap: 30px;
+    width: 360px;
+    height: 480px;
+    font-size: large;
   }
 }
 
