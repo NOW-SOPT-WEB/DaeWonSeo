@@ -38,9 +38,8 @@ section {
 main {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   padding: 12px;
-  width: 1500px;
+  width: 1400px;
   color: black;
 }
 
@@ -125,6 +124,18 @@ nav {
   scroll-margin-top: 100px;
 }
 
+.banner-wrapper {
+  display: flex;
+  width: 1320px;
+  max-width: 1320px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.animation {
+  animation: slide 10s infinite linear;
+}
+
 .hamberger-wrapper hr {
   width: 90%;
   height: 10%;
@@ -170,9 +181,27 @@ header h1 {
   cursor: pointer;
 }
 
+.banner-wrapper img {
+  object-fit: contain;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+  background-color: white;
+}
+
 @media (max-width: 900px) {
   .item-wrapper {
     width: 330px;
     height: 440px;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
