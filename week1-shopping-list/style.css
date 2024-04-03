@@ -93,21 +93,25 @@ nav {
 .main-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .items-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 16px;
 }
 
 .item-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
-  height: 264px;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 8px;
+  width: 240px;
+  height: 320px;
   background-color: seashell;
 }
 
@@ -128,4 +132,17 @@ nav a {
 
 header h1 {
   grid-column: 2 / 3;
+}
+
+.item-wrapper img {
+  object-fit: contain;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90%;
+  height: 300px;
+  background-color: white;
+}
+
+.item-wrapper * {
+  margin: 0;
 }
