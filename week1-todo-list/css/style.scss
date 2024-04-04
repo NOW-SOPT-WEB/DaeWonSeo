@@ -10,6 +10,18 @@ main {
   height: 100%;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: greenyellow;
+    font-weight: bolder;
+  }
+}
+
 section {
   display: flex;
   flex-direction: column;
