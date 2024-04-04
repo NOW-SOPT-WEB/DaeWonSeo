@@ -1,6 +1,9 @@
 body {
   height: 100dvh;
   background: linear-gradient(skyblue, aquamarine);
+  font-family: "Single Day", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 main {
@@ -20,6 +23,7 @@ header {
 header h1 {
   color: greenyellow;
   font-weight: bolder;
+  font-size: 50px;
 }
 header .title-wrapper {
   display: flex;
