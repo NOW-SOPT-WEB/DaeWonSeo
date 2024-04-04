@@ -49,7 +49,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
+  width: 55%;
   height: 100%;
 }
 section .list-wrapper {
@@ -57,15 +57,35 @@ section .list-wrapper {
   flex-direction: column;
   gap: 2%;
   height: 100%;
-  width: 100%;
+  width: 80%;
 }
 section .item-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2% 4%;
+  padding: 0 4%;
   border-radius: 8px;
+  width: 100%;
+  height: 60px;
   background-color: white;
+}
+section .item-wrapper p {
+  margin-right: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80%;
+}
+section .item-wrapper button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  background-color: darkslategrey;
+  color: white;
 }
 
 .container {
@@ -75,7 +95,7 @@ section .item-wrapper {
   gap: 8%;
   margin: 0 auto;
   padding: 16px;
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
 
