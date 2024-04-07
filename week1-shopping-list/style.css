@@ -114,7 +114,7 @@ nav {
   max-width: 80vw;
 }
 
-.item-wrapper {
+article {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,8 +179,7 @@ nav a:hover {
 header h1 {
   grid-column: 2 / 3;
 }
-
-.item-wrapper img {
+article img {
   border-radius: 8px;
   object-fit: contain;
   overflow: hidden;
@@ -189,12 +188,12 @@ header h1 {
   background-color: white;
 }
 
-.item-wrapper:hover {
+article:hover {
   cursor: pointer;
   animation: scaling 1s infinite;
 }
 
-.item-wrapper * {
+article * {
   margin: 0;
 }
 
@@ -213,7 +212,7 @@ header h1 {
 }
 
 @media (max-width: 1150px) {
-  .item-wrapper {
+  article {
     gap: 30px;
     width: 270px;
     height: 360px;
@@ -222,7 +221,7 @@ header h1 {
 }
 
 @media (max-width: 1000px) {
-  .item-wrapper {
+  article {
     gap: 30px;
     width: 360px;
     height: 480px;
