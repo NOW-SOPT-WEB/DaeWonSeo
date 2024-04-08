@@ -133,11 +133,10 @@ article:hover {
 
 .banner-container img {
   border-radius: 8px;
-  object-fit: contain;
+  object-fit: cover;
   overflow: hidden;
-  width: 160px;
-  height: 160px;
-  background-color: white;
+  width: 10rem;
+  height: 10rem;
 }
 
 nav > ul {
