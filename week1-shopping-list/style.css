@@ -84,10 +84,21 @@ header > .hamburger-icon {
   display: flex;
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
 }
 
-.banner-container img {
+.banner-container > ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  list-style-type: none;
+}
+
+.banner-container > ul > li {
+  margin-right: 1rem;
+}
+
+.banner-container > ul > li > img {
   border-radius: 0.5rem;
   object-fit: cover;
   overflow: hidden;
