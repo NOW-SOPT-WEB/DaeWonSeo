@@ -16,19 +16,17 @@ header {
 }
 
 section {
+}
+
+.item-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  overflow: hidden;
-  background-color: #000000;
-  margin-top: 4rem;
-  margin-left: 20rem;
+  margin-top: 3rem;
+  margin-left: 21rem;
 }
 
 footer {
@@ -83,7 +81,7 @@ article {
   scroll-margin-top: 100px;
 }
 
-.banner-wrapper {
+.banner-container {
   display: flex;
   width: 97%;
   max-width: 97%;
@@ -133,7 +131,7 @@ article:hover {
   cursor: pointer;
 }
 
-.banner-wrapper img {
+.banner-container img {
   border-radius: 8px;
   object-fit: contain;
   overflow: hidden;
