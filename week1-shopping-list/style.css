@@ -1,7 +1,25 @@
+/* 기본 레이아웃*/
 body {
   margin: 0;
   color: #ffffff;
   background: #000000;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+  width: 15rem;
+  height: 19rem;
+  background-color: #1f1f1f;
 }
 
 header {
@@ -15,17 +33,17 @@ header {
   background: linear-gradient(#1f1f1f, #121212);
 }
 
-h3,
-p {
-  margin: 0;
-}
-
-.item-container {
+nav {
   display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
-  padding: 1rem;
+  align-items: center;
   border-radius: 0.5rem;
+  padding: 1rem;
+  position: fixed;
+  top: 9rem;
+  left: 1.5rem;
+  width: 16rem;
+  height: 22rem;
   background-color: #121212;
 }
 
@@ -45,17 +63,43 @@ footer {
   font-size: xx-large;
 }
 
-nav {
+/* 헤더 */
+header > img {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+
+header > .hamburger-icon {
+  filter: invert();
+}
+
+/* 배너 */
+.banner-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.banner-container img {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
+}
+
+.animation {
+  animation: slide 10s infinite linear;
+}
+
+/* 아이템 컨테이너 */
+.item-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 0.5rem;
+  margin-top: 1.5rem;
   padding: 1rem;
-  position: fixed;
-  top: 9rem;
-  left: 1.5rem;
-  width: 16rem;
-  height: 22rem;
+  border-radius: 0.5rem;
   background-color: #121212;
 }
 
@@ -66,63 +110,10 @@ nav {
   gap: 2rem;
 }
 
-article {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  border-radius: 0.5rem;
-  padding: 1rem 0;
-  width: 15rem;
-  height: 19rem;
-  background-color: #1f1f1f;
-}
-
-[id] {
-  scroll-margin-top: 100px;
-}
-
-.banner-container {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.animation {
-  animation: slide 10s infinite linear;
-}
-
+/* nav */
 nav > h2 {
   margin: 1rem 0;
   font-size: xx-large;
-}
-
-article > img {
-  border-radius: 0.5rem;
-  object-fit: cover;
-  overflow: hidden;
-  width: 12rem;
-  height: 12rem;
-}
-
-article:hover {
-  cursor: pointer;
-  animation: scaling 1s infinite;
-}
-
-i:hover {
-  color: red;
-  cursor: pointer;
-  transition: color 0.5s ease;
-}
-
-.banner-container img {
-  border-radius: 0.5rem;
-  object-fit: cover;
-  overflow: hidden;
-  width: 10rem;
-  height: 10rem;
 }
 
 nav > ul {
@@ -152,6 +143,16 @@ nav > ul > li > a {
   text-decoration-line: none;
 }
 
+/* article */
+article > img {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* 호버 */
 nav > ul > li:hover > a {
   color: #ffffff;
   transition: color 0.5s ease;
@@ -163,33 +164,23 @@ nav > ul > li:hover {
   transition: background-color 0.5s ease;
 }
 
-header > img {
-  width: 3.125rem;
-  height: 3.125rem;
+article:hover {
+  cursor: pointer;
+  animation: scaling 1s infinite;
 }
 
-header > .hamburger-icon {
-  filter: invert();
+i:hover {
+  color: red;
+  cursor: pointer;
+  transition: color 0.5s ease;
 }
 
-@media (max-width: 1150px) {
-  article {
-    gap: 30px;
-    width: 270px;
-    height: 360px;
-    font-size: large;
-  }
+/* 속성 선택자 */
+[id] {
+  scroll-margin-top: 100px;
 }
 
-@media (max-width: 1000px) {
-  article {
-    gap: 30px;
-    width: 360px;
-    height: 480px;
-    font-size: large;
-  }
-}
-
+/* 애니메이션 및 키 프레임 */
 @keyframes slide {
   0% {
     transform: translateX(0);
@@ -208,5 +199,65 @@ header > .hamburger-icon {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+/* 미디어 쿼리 */
+
+@media (max-width: 1280px) {
+  .items-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.7rem;
+    border-radius: 0.5rem;
+    padding: 1.6rem 0;
+    width: 18rem;
+    height: 22rem;
+    background-color: #1f1f1f;
+  }
+
+  article > img {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+    width: 14rem;
+    height: 14rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .items-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    padding: 3rem 0;
+    width: 24rem;
+    height: 26rem;
+    background-color: #1f1f1f;
+  }
+
+  article > img {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+    width: 17rem;
+    height: 17rem;
   }
 }
