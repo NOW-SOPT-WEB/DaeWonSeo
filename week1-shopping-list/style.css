@@ -1,9 +1,13 @@
 /* 기본 레이아웃*/
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  min-width: 800px;
   color: #ffffff;
   background: #000000;
-  min-width: 800px;
 }
 
 h3,
@@ -178,7 +182,7 @@ i:hover {
 
 /* 속성 선택자 */
 [id] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 8rem;
 }
 
 /* 애니메이션 및 키 프레임 */
