@@ -3,6 +3,7 @@ body {
   margin: 0;
   color: #ffffff;
   background: #000000;
+  min-width: 800px;
 }
 
 h3,
