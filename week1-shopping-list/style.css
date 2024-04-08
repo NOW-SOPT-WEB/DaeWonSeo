@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  color: white;
 }
 
 header {
@@ -11,6 +10,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1;
+  color: #ffffff;
   background: linear-gradient(#1f1f1f, #121212);
 }
 
@@ -45,13 +45,6 @@ nav {
   align-items: center;
   margin-top: 20px;
   min-width: 300px;
-}
-
-.container {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  background-color: azure;
 }
 
 .wrapper {
