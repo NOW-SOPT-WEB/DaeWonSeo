@@ -1,0 +1,280 @@
+/* 기본 레이아웃*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 800px;
+  color: #ffffff;
+  font-family: "Nanum Gothic", sans-serif;
+  background: #000000;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+  width: 15rem;
+  height: 19rem;
+  background-color: #1f1f1f;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(#1f1f1f, #121212);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: fixed;
+  top: 9rem;
+  left: 1.5rem;
+  width: 16rem;
+  height: 22rem;
+  background-color: #121212;
+}
+
+main {
+  margin-top: 3rem;
+  margin-left: 21rem;
+  padding: 1rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  background: linear-gradient(#1f1f1f, #121212);
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+/* 헤더 */
+header > img {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+
+header > .hamburger-icon {
+  filter: invert();
+}
+
+/* 배너 */
+.banner-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-container > ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  list-style-type: none;
+}
+
+.banner-container > ul > li {
+  margin-right: 1rem;
+}
+
+.banner-container > ul > li > img {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
+}
+
+.animation {
+  animation: slide 10s infinite linear;
+}
+
+/* 아이템 컨테이너 */
+.item-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #121212;
+}
+
+.items-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* nav */
+nav > h2 {
+  margin: 1rem 0;
+  font-size: xx-large;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+nav > ul > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  list-style: none;
+}
+
+nav > ul > li > a {
+  color: #4f4f4f;
+  font-size: xx-large;
+  font-weight: bold;
+  text-decoration-line: none;
+}
+
+/* article */
+article > img {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* 호버 */
+nav > ul > li:hover > a {
+  color: #ffffff;
+  transition: color 0.5s ease;
+}
+
+nav > ul > li:hover {
+  color: #ffffff;
+  background-color: #222222;
+  transition: background-color 0.5s ease;
+}
+
+article:hover {
+  cursor: pointer;
+  animation: scaling 1s infinite;
+}
+
+i:hover {
+  color: red;
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+
+/* 속성 선택자 */
+[id] {
+  scroll-margin-top: 8rem;
+}
+
+/* 애니메이션 및 키 프레임 */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scaling {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 미디어 쿼리 */
+
+@media (max-width: 1280px) {
+  .items-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.7rem;
+    border-radius: 0.5rem;
+    padding: 1.6rem 0;
+    width: 18rem;
+    height: 22rem;
+    background-color: #1f1f1f;
+  }
+
+  article > img {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+    width: 14rem;
+    height: 14rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .items-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    padding: 3rem 0;
+    width: 24rem;
+    height: 26rem;
+    background-color: #1f1f1f;
+  }
+
+  article > img {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+    width: 17rem;
+    height: 17rem;
+  }
+}
