@@ -47,4 +47,5 @@ document.querySelector(".nav-link-wrapper").addEventListener("click", (e) => {
   }
 });
 
+// 처음 화면에서는 전체 목록을 보여줌
 displayItems(SHOPPING_LIST);
