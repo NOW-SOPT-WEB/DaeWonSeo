@@ -37,7 +37,7 @@ function filterItems(category) {
 }
 
 // nav에서 a태그에 클릭 이벤트 추가
-document.querySelector(".nav-link-wrapper").addEventListener("click", (e) => {
+document.querySelector(".nav-link-wrapper").onclick = (e) => {
   if (e.target.tagName === "LI") {
     const category = e.target.innerText;
     itemTitle.innerText = category;
@@ -45,7 +45,7 @@ document.querySelector(".nav-link-wrapper").addEventListener("click", (e) => {
     displayItems(filteredItems);
     e.preventDefault();
   }
-});
+};
 
 // 처음 화면에서는 전체 목록을 보여줌
 displayItems(SHOPPING_LIST);
