@@ -1,9 +1,14 @@
 const mainIcon = document.querySelector("#main-logo");
 const hamburgerIcon = document.querySelector("#hamburger-logo");
+
 const aside = document.querySelector("aside");
 const cartLink = document.querySelector("#cart-link");
+
 const arrowIcon = document.querySelector("#arrow-icon");
 const tablebody = document.querySelector(".cart-table-container table tbody");
+const purchaseBtn = document.querySelector("#purchase-button");
+const homeBtn = document.querySelector("#home-button");
+
 let cartList = sessionStorage.getItem("cartList");
 cartList = cartList ? JSON.parse(cartList) : [];
 
@@ -25,6 +30,10 @@ arrowIcon.onclick = () => {
 // 장바구니 클릭 시 cart 페이지로 이동
 cartLink.onclick = () => {
   location.href = "cart.html";
+};
+
+homeBtn.onclick = () => {
+  location.href = "../home/home.html";
 };
 
 // 테이블 row를 생성하는 함수
