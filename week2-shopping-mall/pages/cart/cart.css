@@ -1,0 +1,110 @@
+/* 기본 레이아웃*/
+body {
+  margin: 0;
+  min-width: 800px;
+  color: #ffffff;
+  font-family: "Nanum Gothic", sans-serif;
+  background: #000000;
+}
+
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(#1f1f1f, #121212);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  width: 20rem;
+  height: 100vh;
+  background: linear-gradient(#1f1f1f, #121212);
+  color: #4f4f4f;
+  font-size: x-large;
+  transform: translateX(100%);
+  transition: 0.5s;
+}
+
+main {
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+  height: 8rem;
+  background: linear-gradient(#1f1f1f, #121212);
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+/* 헤더 */
+header > img {
+  width: 3.125rem;
+  height: 3.125rem;
+  cursor: pointer;
+}
+
+header > .hamburger-icon {
+  filter: invert();
+}
+
+/* 사이드바 메뉴 */
+.side-icon-container > i {
+  padding: 0 1rem;
+}
+
+.side-menu-container > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-container ul > li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+/* 호버 */
+.side-icon-container > i:hover {
+  color: white;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}
+
+.side-menu-container ul > li:hover {
+  color: white;
+  background-color: #222222;
+  transition: background-color 0.5s ease;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}

@@ -107,16 +107,16 @@ header > .hamburger-icon {
 }
 
 /* 사이드바 메뉴 */
-aside > section > i {
+.side-icon-container > i {
   padding: 0 1rem;
 }
 
-aside > section > ul {
+.side-menu-container > ul {
   display: flex;
   flex-direction: column;
 }
 
-aside > section > ul > li {
+.side-menu-container ul > li {
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -213,13 +213,13 @@ article > img {
 
 /* 호버 */
 
-section > i:hover {
+.side-icon-container > i:hover {
   color: white;
   transition: color 0.5s ease;
   cursor: pointer;
 }
 
-aside > section > ul > li:hover {
+.side-menu-container ul > li:hover {
   color: white;
   background-color: #222222;
   transition: background-color 0.5s ease;

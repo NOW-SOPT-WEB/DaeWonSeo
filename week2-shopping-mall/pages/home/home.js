@@ -3,6 +3,7 @@ import { SHOPPING_LIST } from "../../constants/item.js";
 const mainIcon = document.querySelector("#main-logo");
 const hamburgerIcon = document.querySelector("#hamburger-logo");
 const aside = document.querySelector("aside");
+const cartLink = document.querySelector("#cart-link");
 const arrowIcon = document.querySelector("#arrow-icon");
 const itemWrapper = document.querySelector(".items-wrapper");
 const itemTitle = document.querySelector(".item-container h2");
@@ -20,6 +21,11 @@ hamburgerIcon.onclick = () => {
 // 사이드 메뉴 화살표 아이콘 클릭하면 모달 메뉴 닫히게
 arrowIcon.onclick = () => {
   aside.classList.remove("active");
+};
+
+// 장바구니 클릭 시 cart 페이지로 이동
+cartLink.onclick = () => {
+  location.href = "../cart/cart.html";
 };
 
 // 아이템 리스트 (쇼핑리스트) 를 보여주는 함수
