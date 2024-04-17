@@ -9,7 +9,7 @@ const itemTitle = document.querySelector(".item-container h2");
 
 // 메인 로고 클릭 시 home.html로 이동
 mainIcon.onclick = () => {
-  window.location.href = "home.html";
+  location.href = "home.html";
 };
 
 // 햄버거 로고 클릭시 모달 메뉴 보이게
@@ -17,6 +17,7 @@ hamburgerIcon.onclick = () => {
   aside.classList.add("active");
 };
 
+// 사이드 메뉴 화살표 아이콘 클릭하면 모달 메뉴 닫히게
 arrowIcon.onclick = () => {
   aside.classList.remove("active");
 };
@@ -32,6 +33,37 @@ const displayItems = (filteredItems) => {
           <p>${item.price.toLocaleString()}원</p>
           <h3>${item.name}</h3>
         `;
+
+    // article에 onclick 이벤트로 장바구니에 추가할 수 있게 함 (sessionStorage 활용)
+    article.onclick = () => {
+      const isConfirmed = confirm("장바구니에 추가하시겠습니까?");
+
+      if (!isConfirmed) {
+        alert("취소 되었습니다.");
+        return;
+      }
+
+      const itemInfo = {
+        name: item.name,
+        image: item.image,
+        category: item.category,
+        price: item.price,
+      };
+
+      let cartList = sessionStorage.getItem("cartList");
+      cartList = cartList ? JSON.parse(cartList) : [];
+
+      if (cartList.some((cartItem) => cartItem.name === itemInfo.name)) {
+        // 중복해서 추가할수 없게함
+        alert("이미 추가되어있는 상품입니다.");
+        return;
+      }
+
+      cartList.push(itemInfo);
+      sessionStorage.setItem("cartList", JSON.stringify(cartList));
+      alert("상품이 정상적으로 추가되었습니다.");
+    };
+
     itemWrapper.appendChild(article);
   });
 };
