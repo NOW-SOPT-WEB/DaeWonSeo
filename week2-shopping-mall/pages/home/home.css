@@ -12,8 +12,14 @@ body {
 }
 
 h3,
-p {
+p,
+ul {
   margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
 }
 
 article {
@@ -37,6 +43,22 @@ header {
   top: 0;
   z-index: 1;
   background: linear-gradient(#1f1f1f, #121212);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  background: linear-gradient(#1f1f1f, #121212);
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  width: 20rem;
+  height: 100vh;
+  font-size: x-large;
+  transform: translateX(100%);
+  transition: 0.5s;
 }
 
 nav {
@@ -94,7 +116,6 @@ header > .hamburger-icon {
   margin: 0;
   padding: 0;
   white-space: nowrap;
-  list-style-type: none;
 }
 
 .banner-container > ul > li {
@@ -156,7 +177,6 @@ nav > ul > li {
   color: #4f4f4f;
   font-size: xx-large;
   font-weight: bold;
-  list-style: none;
   cursor: pointer;
 }
 
