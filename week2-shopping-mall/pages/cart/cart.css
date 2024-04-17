@@ -97,12 +97,12 @@ header > .hamburger-icon {
 /* 장바구니 */
 .cart-table-container {
   display: flex;
-  padding: 1rem;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding: 1rem;
   width: 80%;
-  background-color: #121212;
 }
 
 .cart-table-container > table {
@@ -145,6 +145,22 @@ header > .hamburger-icon {
   overflow: auto;
 }
 
+.button-container {
+  display: flex;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.button-container button {
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #bcec02;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+
 /* 호버 */
 .side-icon-container > i:hover {
   color: white;
@@ -161,6 +177,11 @@ header > .hamburger-icon {
 }
 
 .cart-table-container > table button:hover {
-  background-color: #eaff94;
+  background-color: #ecfbae;
+  transition: background-color 0.5s ease;
+}
+
+.button-container button:hover {
+  background-color: #ecfbae;
   transition: background-color 0.5s ease;
 }
