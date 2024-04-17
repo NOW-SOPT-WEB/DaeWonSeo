@@ -94,6 +94,44 @@ header > .hamburger-icon {
   transform: translateX(0);
 }
 
+/* 장바구니 */
+.cart-table-container {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+}
+
+.cart-table-container > table {
+  width: 80%;
+  border-collapse: collapse;
+  background-color: #1f1f1f;
+}
+
+.cart-table-container > table tr {
+  border: 0.1rem solid #000000;
+  text-align: center;
+  width: 100%;
+  height: 6rem;
+}
+
+.cart-table-container > table th {
+  background: linear-gradient(#1f1f1f, #121212);
+}
+
+.cart-table-container > table button {
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: #bcec02;
+}
+
+.cart-table-container > table img {
+  width: 4rem;
+  height: 4rem;
+}
+
 /* 호버 */
 .side-icon-container > i:hover {
   color: white;

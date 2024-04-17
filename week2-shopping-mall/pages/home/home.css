@@ -212,7 +212,6 @@ article > img {
 }
 
 /* 호버 */
-
 .side-icon-container > i:hover {
   color: white;
   transition: color 0.5s ease;
@@ -277,7 +276,6 @@ article > i:hover {
 }
 
 /* 미디어 쿼리 */
-
 @media (max-width: 1280px) {
   .items-wrapper {
     display: flex;
