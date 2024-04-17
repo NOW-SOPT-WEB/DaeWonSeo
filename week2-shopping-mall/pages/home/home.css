@@ -48,14 +48,16 @@ header {
 aside {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
-  background: linear-gradient(#1f1f1f, #121212);
+  gap: 1rem;
+  padding: 2rem;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 2;
   width: 20rem;
   height: 100vh;
+  background: linear-gradient(#1f1f1f, #121212);
+  color: #4f4f4f;
   font-size: x-large;
   transform: translateX(100%);
   transition: 0.5s;
@@ -102,6 +104,26 @@ header > img {
 
 header > .hamburger-icon {
   filter: invert();
+}
+
+/* 사이드바 메뉴 */
+aside > section > i {
+  padding: 0 1rem;
+}
+
+aside > section > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+aside > section > ul > li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.active {
+  transform: translateX(0);
 }
 
 /* 배너 */
@@ -190,6 +212,21 @@ article > img {
 }
 
 /* 호버 */
+
+section > i:hover {
+  color: white;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}
+
+aside > section > ul > li:hover {
+  color: white;
+  background-color: #222222;
+  transition: background-color 0.5s ease;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}
+
 nav > ul > li:hover > a {
   color: #ffffff;
   transition: color 0.5s ease;
@@ -206,7 +243,7 @@ article:hover {
   animation: scaling 1s infinite;
 }
 
-i:hover {
+article > i:hover {
   color: red;
   cursor: pointer;
   transition: color 0.5s ease;

@@ -1,12 +1,24 @@
 import { SHOPPING_LIST } from "../../constants/item.js";
 
 const mainIcon = document.querySelector("#main-logo");
+const hamburgerIcon = document.querySelector("#hamburger-logo");
+const aside = document.querySelector("aside");
+const arrowIcon = document.querySelector("#arrow-icon");
 const itemWrapper = document.querySelector(".items-wrapper");
 const itemTitle = document.querySelector(".item-container h2");
 
 // 메인 로고 클릭 시 home.html로 이동
 mainIcon.onclick = () => {
   window.location.href = "home.html";
+};
+
+// 햄버거 로고 클릭시 모달 메뉴 보이게
+hamburgerIcon.onclick = () => {
+  aside.classList.add("active");
+};
+
+arrowIcon.onclick = () => {
+  aside.classList.remove("active");
 };
 
 // 아이템 리스트 (쇼핑리스트) 를 보여주는 함수
