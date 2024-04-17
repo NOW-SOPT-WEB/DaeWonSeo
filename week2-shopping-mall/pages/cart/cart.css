@@ -123,8 +123,11 @@ header > .hamburger-icon {
 .cart-table-container > table button {
   border: 0;
   border-radius: 0.5rem;
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1.5rem;
   background-color: #bcec02;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
 }
 
 .cart-table-container > table img {
@@ -145,4 +148,9 @@ header > .hamburger-icon {
   transition: background-color 0.5s ease;
   transition: color 0.5s ease;
   cursor: pointer;
+}
+
+.cart-table-container > table button:hover {
+  background-color: #eaff94;
+  transition: background-color 0.5s ease;
 }

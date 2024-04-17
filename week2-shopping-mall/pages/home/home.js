@@ -50,6 +50,7 @@ const displayItems = (filteredItems) => {
       }
 
       const itemInfo = {
+        id: item.id,
         name: item.name,
         image: item.image,
         category: item.category,
