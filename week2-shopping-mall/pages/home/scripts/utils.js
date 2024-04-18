@@ -41,7 +41,7 @@ export const displayItems = (filteredItems) => {
 
       cartList.push(itemInfo);
       sessionStorage.setItem("cartList", JSON.stringify(cartList));
-      window.alert("상품이 정상적으로 추가되었습니다.");
+      window.location.href = "./../../pages/cart/cart.html";
     });
 
     selectors.itemWrapper.appendChild(article);
