@@ -5,16 +5,22 @@ const aside = document.querySelector("aside");
 const cartLink = document.querySelector("#cart-link");
 
 const arrowIcon = document.querySelector("#arrow-icon");
+
 const tablebody = document.querySelector(".cart-table-container table tbody");
+const selectAllCheckbox = document.querySelector(
+  'thead input[type="checkbox"]'
+);
 const purchaseBtn = document.querySelector("#purchase-button");
+
 const purchaseModal = document.querySelector("#purchase-modal");
 const modalContainer = document.querySelector(".modal-content-container");
 const modalPriceContainer = document.querySelector(".modal-price-container");
-const modalCloseBtn = document.querySelector("#modal-close-button");
+const modalPurchaseBtn = document.querySelector("#modal-purchase-button");
 const homeBtn = document.querySelector("#home-button");
 
 let cartList = sessionStorage.getItem("cartList");
 cartList = cartList ? JSON.parse(cartList) : [];
+let selectedItems = [];
 
 // 메인 로고 클릭 시 home.html로 이동
 mainIcon.onclick = () => {
@@ -41,10 +47,70 @@ homeBtn.onclick = () => {
   location.href = "../home/home.html";
 };
 
-// 모달 닫기 버튼
-modalCloseBtn.onclick = () => {
-  console.log("닫기");
-  purchaseModal.close();
+// 장바구니 table thead 체크박스 체크시 모든 체크박스 체크 되게 함
+selectAllCheckbox.onchange = (e) => {
+  const checkboxList = document.querySelectorAll('input[type="checkbox"]');
+
+  checkboxList.forEach((checkbox) => {
+    checkbox.checked = e.target.checked;
+  });
+
+  if (e.target.checked) {
+    selectedItems = cartList;
+  } else {
+    selectedItems = [];
+  }
+};
+
+// 테이블 row를 생성하는 함수
+const displayTable = (cartList) => {
+  tablebody.innerHTML = "";
+
+  if (cartList.length === 0) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td colspan="6">장바구니에 상품이 없어요~</td>
+      `;
+    tablebody.appendChild(tr);
+    return;
+  }
+
+  cartList.forEach((currentItem) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+              <td><input id="checkbox-${currentItem.id}" type="checkbox" /></td>
+              <td>
+                <img src="${currentItem.image}" />
+              </td>
+              <td>${currentItem.name}</td>
+              <td>${currentItem.price.toLocaleString()}원</td>
+              <td>${currentItem.category}</td>
+              <td><button id="delete-${currentItem.id}">삭제</button></td>
+            `;
+
+    tablebody.appendChild(tr);
+
+    const deleteButton = document.querySelector(`#delete-${currentItem.id}`);
+    const checkbox = document.querySelector(`#checkbox-${currentItem.id}`);
+
+    // 버튼 눌렀을 때 삭제하는 기능 추가
+    deleteButton.onclick = () => {
+      const newCartList = cartList.filter((item) => item.id !== currentItem.id);
+      sessionStorage.setItem("cartList", JSON.stringify(newCartList));
+      displayTable(newCartList);
+    };
+
+    //체크 박스를 선택했을 때 선택된 아이템 배열에 추가
+    checkbox.onchange = (e) => {
+      if (e.target.checked) {
+        selectedItems.push(currentItem);
+      } else {
+        selectedItems = selectedItems.filter(
+          (item) => item.id !== currentItem.id
+        );
+      }
+    };
+  });
 };
 
 // 구매하기 버튼 클릭 시 모달
@@ -52,7 +118,12 @@ purchaseBtn.onclick = () => {
   modalContainer.innerHTML = "";
   let totalPrice = 0;
 
-  cartList.forEach((item) => {
+  if (selectedItems.length === 0) {
+    alert("구매하실 상품을 선택해 주세요!");
+    return;
+  }
+
+  selectedItems.forEach((item) => {
     const div = document.createElement("div");
     div.innerHTML = `
     <img src="${item.image}" alt="${item.name}" />
@@ -71,42 +142,16 @@ purchaseBtn.onclick = () => {
   purchaseModal.showModal();
 };
 
-// 테이블 row를 생성하는 함수
-const displayTable = (cartList) => {
-  tablebody.innerHTML = "";
-
-  if (cartList.length === 0) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-    <td colspan="6">장바구니에 상품이 없어요~</td>
-    `;
-    tablebody.appendChild(tr);
-    return;
-  }
-
-  cartList.forEach((currentItem) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-            <td><input type="checkbox" /></td>
-            <td>
-              <img src="${currentItem.image}" />
-            </td>
-            <td>${currentItem.name}</td>
-            <td>${currentItem.price.toLocaleString()}원</td>
-            <td>${currentItem.category}</td>
-            <td><button id="delete-${currentItem.id}">삭제</button></td>
-          `;
-
-    tablebody.appendChild(tr);
-
-    // 버튼 눌렀을 때 삭제하는 기능 추가
-    const deleteButton = document.querySelector(`#delete-${currentItem.id}`);
-    deleteButton.onclick = () => {
-      const newCartList = cartList.filter((item) => item.id !== currentItem.id);
-      sessionStorage.setItem("cartList", JSON.stringify(newCartList));
-      displayTable(newCartList);
-    };
-  });
+// 모달 구매하기 버튼 클릭 시 sessiongStorage 초기화
+modalPurchaseBtn.onclick = () => {
+  const newCartList = cartList.filter(
+    (item) => !selectedItems.find((selectedItem) => selectedItem.id === item.id)
+  );
+  sessionStorage.setItem("cartList", JSON.stringify(newCartList));
+  displayTable(newCartList);
+  selectedItems = [];
+  alert("구매가 완료되었습니다.");
+  purchaseModal.close();
 };
 
 // 모달에 아이템과 총 가격 표시
