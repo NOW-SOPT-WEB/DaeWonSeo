@@ -161,6 +161,63 @@ header > .hamburger-icon {
   cursor: pointer;
 }
 
+/* 모달 */
+dialog {
+  border-radius: 0.5rem;
+  width: 30rem;
+  height: 30rem;
+  color: white;
+  background-color: #121212;
+}
+
+dialog form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog button {
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #bcec02;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modal-content-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 5rem;
+  height: 6rem;
+  background-color: #1f1f1f;
+}
+
+.modal-content-container > div img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+}
+
 /* 호버 */
 .side-icon-container > i:hover {
   color: white;

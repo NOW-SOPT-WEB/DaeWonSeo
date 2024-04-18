@@ -7,6 +7,10 @@ const cartLink = document.querySelector("#cart-link");
 const arrowIcon = document.querySelector("#arrow-icon");
 const tablebody = document.querySelector(".cart-table-container table tbody");
 const purchaseBtn = document.querySelector("#purchase-button");
+const purchaseModal = document.querySelector("#purchase-modal");
+const modalContainer = document.querySelector(".modal-content-container");
+const modalPriceContainer = document.querySelector(".modal-price-container");
+const modalCloseBtn = document.querySelector("#modal-close-button");
 const homeBtn = document.querySelector("#home-button");
 
 let cartList = sessionStorage.getItem("cartList");
@@ -32,8 +36,39 @@ cartLink.onclick = () => {
   location.href = "cart.html";
 };
 
+// 장바구니 페이지 홈으로 버튼 클릭 시 home 페이지로 이동
 homeBtn.onclick = () => {
   location.href = "../home/home.html";
+};
+
+// 모달 닫기 버튼
+modalCloseBtn.onclick = () => {
+  console.log("닫기");
+  purchaseModal.close();
+};
+
+// 구매하기 버튼 클릭 시 모달
+purchaseBtn.onclick = () => {
+  modalContainer.innerHTML = "";
+  let totalPrice = 0;
+
+  cartList.forEach((item) => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <img src="${item.image}" alt="${item.name}" />
+    <p>${item.price.toLocaleString()}원</p>
+    <h3>${item.name}</h3>
+  `;
+    modalContainer.appendChild(div);
+    totalPrice += Number(item.price);
+  });
+
+  modalPriceContainer.innerHTML = "";
+  const totalPriceElement = document.createElement("p");
+  totalPriceElement.innerText = `총 금액: ${totalPrice.toLocaleString()}원`;
+  modalPriceContainer.appendChild(totalPriceElement);
+
+  purchaseModal.showModal();
 };
 
 // 테이블 row를 생성하는 함수
@@ -73,5 +108,7 @@ const displayTable = (cartList) => {
     };
   });
 };
+
+// 모달에 아이템과 총 가격 표시
 
 displayTable(cartList);
