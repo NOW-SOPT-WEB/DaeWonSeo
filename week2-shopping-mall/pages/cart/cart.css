@@ -7,7 +7,6 @@ body {
   background: #000000;
 }
 
-h3,
 p,
 ul {
   margin: 0;
@@ -163,27 +162,13 @@ header > .hamburger-icon {
 
 /* 모달 */
 dialog {
+  padding: 0;
+  border: #4f4f4f 0.01rem solid;
   border-radius: 0.5rem;
-  width: 30rem;
-  height: 30rem;
+  width: 32rem;
+  height: 36rem;
   color: white;
   background-color: #121212;
-}
-
-dialog form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-dialog button {
-  border: 0;
-  border-radius: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background-color: #bcec02;
-  font-weight: bold;
-  font-size: medium;
-  cursor: pointer;
 }
 
 .modal-container {
@@ -194,28 +179,79 @@ dialog button {
   height: 100%;
 }
 
+.modal-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(#121212, #1f1f1f);
+}
+
 .modal-content-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 1rem;
+}
+
+.modal-purchase-container {
+  padding: 1rem;
+}
+
+.purchase-button-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
-.modal-content-container div {
+.modal-title-container > i {
+  color: white;
+}
+
+.modal-title-container button {
+  border: 0;
+  color: white;
+  font-size: xx-large;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-content-container > div {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  width: 5rem;
-  height: 6rem;
+  gap: 0.2rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 6rem;
+  height: 8rem;
   background-color: #1f1f1f;
 }
 
-.modal-content-container > div img {
+.modal-content-container > div > img {
   width: 4rem;
   height: 4rem;
   object-fit: cover;
+}
+
+.modal-content-container > div > h2 {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+}
+
+.purchase-button-container > button {
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #bcec02;
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
 }
 
 /* 호버 */

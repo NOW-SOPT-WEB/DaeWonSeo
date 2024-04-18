@@ -57,7 +57,7 @@ purchaseBtn.onclick = () => {
     div.innerHTML = `
     <img src="${item.image}" alt="${item.name}" />
     <p>${item.price.toLocaleString()}원</p>
-    <h3>${item.name}</h3>
+    <p>${item.name}</p>
   `;
     modalContainer.appendChild(div);
     totalPrice += Number(item.price);
