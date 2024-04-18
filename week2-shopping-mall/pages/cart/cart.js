@@ -160,6 +160,5 @@ modalPurchaseBtn.addEventListener("click", () => {
   alert("구매가 완료되었습니다.");
 });
 
-// 모달에 아이템과 총 가격 표시
-
+// 초기 테이블 생성
 displayTable(cartList);

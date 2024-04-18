@@ -9,24 +9,24 @@ const itemWrapper = document.querySelector(".items-wrapper");
 const itemTitle = document.querySelector(".item-container h2");
 
 // 메인 로고 클릭 시 home.html로 이동
-mainIcon.onclick = () => {
+mainIcon.addEventListener("click", () => {
   location.href = "home.html";
-};
+});
 
-// 햄버거 로고 클릭시 모달 메뉴 보이게
-hamburgerIcon.onclick = () => {
+// 햄버거 로고 클릭 시 모달 메뉴 보이게
+hamburgerIcon.addEventListener("click", () => {
   aside.classList.add("active");
-};
+});
 
 // 사이드 메뉴 화살표 아이콘 클릭하면 모달 메뉴 닫히게
-arrowIcon.onclick = () => {
+arrowIcon.addEventListener("click", () => {
   aside.classList.remove("active");
-};
+});
 
 // 장바구니 클릭 시 cart 페이지로 이동
-cartLink.onclick = () => {
-  location.href = "../cart/cart.html";
-};
+cartLink.addEventListener("click", () => {
+  window.location.href = "../cart/cart.html";
+});
 
 // 아이템 리스트 (쇼핑리스트) 를 보여주는 함수
 const displayItems = (filteredItems) => {
@@ -34,18 +34,18 @@ const displayItems = (filteredItems) => {
   filteredItems.forEach((item) => {
     const article = document.createElement("article");
     article.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" />
-          <i class="fas fa-heart"></i>
-          <p>${item.price.toLocaleString()}원</p>
-          <h3>${item.name}</h3>
-        `;
+      <img src="${item.image}" alt="${item.name}" />
+      <i class="fas fa-heart"></i>
+      <p>${item.price.toLocaleString()}원</p>
+      <h3>${item.name}</h3>
+    `;
 
-    // article에 onclick 이벤트로 장바구니에 추가할 수 있게 함 (sessionStorage 활용)
-    article.onclick = () => {
-      const isConfirmed = confirm("장바구니에 추가하시겠습니까?");
+    // article에 click 이벤트 리스너 추가하여 sessionStorage를 활용해 장바구니에 아이템 추가
+    article.addEventListener("click", () => {
+      const isConfirmed = window.confirm("장바구니에 추가하시겠습니까?");
 
       if (!isConfirmed) {
-        alert("취소 되었습니다.");
+        window.alert("취소 되었습니다.");
         return;
       }
 
@@ -60,16 +60,16 @@ const displayItems = (filteredItems) => {
       let cartList = sessionStorage.getItem("cartList");
       cartList = cartList ? JSON.parse(cartList) : [];
 
-      if (cartList.some((cartItem) => cartItem.name === itemInfo.name)) {
-        // 중복해서 추가할수 없게함
-        alert("이미 추가되어있는 상품입니다.");
+      if (cartList.some((cartItem) => cartItem.id === itemInfo.id)) {
+        // 상품이 이미 장바구니에 있을 경우 추가하지 않음
+        window.alert("이미 추가되어있는 상품입니다.");
         return;
       }
 
       cartList.push(itemInfo);
       sessionStorage.setItem("cartList", JSON.stringify(cartList));
-      alert("상품이 정상적으로 추가되었습니다.");
-    };
+      window.alert("상품이 정상적으로 추가되었습니다.");
+    });
 
     itemWrapper.appendChild(article);
   });
@@ -88,15 +88,14 @@ function filterItems(category) {
 }
 
 // nav에서 a태그에 클릭 이벤트 추가
-document.querySelector(".nav-link-wrapper").onclick = (e) => {
-  if (e.target.tagName === "LI") {
+document.querySelector(".nav-link-wrapper").addEventListener("click", (e) => {
+  if (e.target.tagName.toLowerCase() === "li") {
     const category = e.target.innerText;
     itemTitle.innerText = category;
     const filteredItems = filterItems(category);
     displayItems(filteredItems);
-    e.preventDefault();
   }
-};
+});
 
 // 처음 화면에서는 전체 목록을 보여줌
 displayItems(SHOPPING_LIST);
