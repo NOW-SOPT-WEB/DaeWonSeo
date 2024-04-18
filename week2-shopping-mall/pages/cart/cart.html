@@ -45,7 +45,7 @@
         <table>
           <thead>
             <tr>
-              <th><input type="checkbox" /></th>
+              <th><input type="checkbox" aria-label="모든 상품 선택" /></th>
               <th colspan="2">상품 정보</th>
               <th>상품 금액</th>
               <th>카테고리</th>
@@ -65,16 +65,16 @@
       <div class="modal-container">
         <div class="modal-title-container">
           <h2>상품 구매</h2>
-          <form method="dialog">
-            <button id="modal-close-button" type="button">x</button>
-          </form>
+          <div>
+            <button id="modal-close-button" aria-label="모달 닫기">x</button>
+          </div>
         </div>
         <div class="modal-content-container"></div>
         <div class="modal-purchase-container">
           <div class="modal-price-container"></div>
-          <div class="purchase-button-container">
+          <form class="purchase-button-container" method="dialog">
             <button id="modal-purchase-button" type="button">구매하기</button>
-          </div>
+          </form>
         </div>
       </div>
     </dialog>
