@@ -43,7 +43,8 @@ export const displayTable = (cartList) => {
 
     //체크 박스를 선택했을 때 선택된 아이템 배열에 추가
     checkbox.addEventListener("change", (e) => {
-      if (e.target.checked) {
+      const isChecked = e.target.checked;
+      if (isChecked) {
         selectedItems.push(currentItem);
       } else {
         selectedItems = selectedItems.filter(
@@ -67,7 +68,7 @@ export const selectItems = (e) => {
   checkboxList.forEach((checkbox) => {
     checkbox.checked = isChecked;
 
-    if (e.target.checked) {
+    if (isChecked) {
       const itemId = Number(checkbox.id.replace("checkbox-", ""));
       const itemToAdd = currentCartList.find((item) => item.id === itemId);
 
