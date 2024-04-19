@@ -60,6 +60,7 @@ export const filterItems = (category) => {
   }
 };
 
+// nav li태그의 요소를 누를 때 카테고리 값을 받아와서 필터링 된 결과를 보여줌
 export const displayFilteredItems = (e) => {
   if (e.target.tagName.toLowerCase() === "li") {
     const category = e.target.innerText;
