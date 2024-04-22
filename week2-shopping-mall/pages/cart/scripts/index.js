@@ -5,7 +5,7 @@ import { displayTable } from "./utils.js";
 let cartList = sessionStorage.getItem("cartList");
 cartList = cartList ? JSON.parse(cartList) : [];
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
   displayTable(cartList);
   attachEventListeners();
   attachCommonEventListener();
