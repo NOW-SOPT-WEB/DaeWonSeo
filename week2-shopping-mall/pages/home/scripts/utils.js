@@ -1,5 +1,5 @@
 import { selectors } from "./selectors.js";
-import { SHOPPING_LIST } from "../../../constants/item.js";
+import { SHOPPING_LIST } from "../../../constants/items.js";
 
 // 아이템 리스트 (쇼핑리스트) 를 보여주는 함수
 export const displayItems = (filteredItems) => {
