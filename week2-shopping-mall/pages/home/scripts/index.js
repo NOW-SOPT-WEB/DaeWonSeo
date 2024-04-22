@@ -1,6 +1,10 @@
 import { attachEventListeners } from "./eventHandlers.js";
+import { attachCommonEventListener } from "../../../common/index.js";
 import { displayItems } from "./utils.js";
 import { SHOPPING_LIST } from "../../../constants/item.js";
 
-displayItems(SHOPPING_LIST);
-attachEventListeners();
+document.addEventListener("DOMContentLoaded", (event) => {
+  displayItems(SHOPPING_LIST);
+  attachEventListeners();
+  attachCommonEventListener();
+});

@@ -2,26 +2,6 @@ import { selectors } from "./selectors.js";
 import { updateCartList, showPurchaseModal, selectItems } from "./utils.js";
 
 export const attachEventListeners = () => {
-  // 메인 로고 클릭 시 home.html로 이동
-  selectors.mainIcon.addEventListener("click", () => {
-    window.location.href = "./../../pages/home/home.html";
-  });
-
-  // 햄버거 로고 클릭 시 모달 메뉴 보이게
-  selectors.hamburgerIcon.addEventListener("click", () => {
-    selectors.aside.classList.add("active");
-  });
-
-  // 사이드 메뉴 화살표 아이콘 클릭하면 모달 메뉴 닫히게
-  selectors.arrowIcon.addEventListener("click", () => {
-    selectors.aside.classList.remove("active");
-  });
-
-  // 장바구니 클릭 시 cart 페이지로 이동
-  selectors.cartLink.addEventListener("click", () => {
-    window.location.href = "./../../pages/cart/cart.html";
-  });
-
   // 장바구니 페이지 홈으로 버튼 클릭 시 home 페이지로 이동
   selectors.homeBtn.addEventListener("click", () => {
     window.location.href = "./../../pages/home/home.html";
@@ -32,12 +12,15 @@ export const attachEventListeners = () => {
     selectors.purchaseModal.close();
   });
 
+  // thead 체크박스 체크하면 모든 체크박스가 체크되게
   selectors.selectAllCheckbox.addEventListener("change", selectItems);
 
+  // 구매하기 버튼 클릭하면 모달창 띄움
   selectors.purchaseBtn.addEventListener("click", () => {
     showPurchaseModal();
   });
 
+  // 모달에 있는 구매하기 버튼을 클릭하면 모든 요소 삭제되고 구매완료됐다는 alert를 띄움
   selectors.modalPurchaseBtn.addEventListener("click", () => {
     updateCartList();
     alert("구매가 완료되었습니다.");

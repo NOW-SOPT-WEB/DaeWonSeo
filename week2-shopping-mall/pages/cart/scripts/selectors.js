@@ -1,9 +1,4 @@
 export const selectors = {
-  mainIcon: document.querySelector("#main-logo"),
-  hamburgerIcon: document.querySelector("#hamburger-logo"),
-  aside: document.querySelector("aside"),
-  cartLink: document.querySelector("#cart-link"),
-  arrowIcon: document.querySelector("#arrow-icon"),
   tableBody: document.querySelector(".cart-table-container table tbody"),
   selectAllCheckbox: document.querySelector('thead input[type="checkbox"]'),
   purchaseBtn: document.querySelector("#purchase-button"),
