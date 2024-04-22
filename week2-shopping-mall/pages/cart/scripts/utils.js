@@ -83,7 +83,7 @@ export const showPurchaseModal = () => {
   let totalPrice = 0;
 
   if (selectedItems.length === 0) {
-    alert("구매하실 상품을 선택해 주세요!");
+    window.alert("구매하실 상품을 선택해 주세요!");
     return;
   }
 

@@ -1,6 +1,19 @@
 import { selectors } from "./selectors.js";
 import { SHOPPING_LIST } from "../../../constants/items.js";
 
+// 배너를 보여주는 함수
+export const displayBanner = () => {
+  Array.from({ length: 2 }).forEach(() => {
+    SHOPPING_LIST.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+      `;
+      selectors.bannerWrapper.appendChild(li);
+    });
+  });
+};
+
 // 아이템 리스트 (쇼핑리스트) 를 보여주는 함수
 export const displayItems = (filteredItems) => {
   selectors.itemWrapper.innerHTML = "";

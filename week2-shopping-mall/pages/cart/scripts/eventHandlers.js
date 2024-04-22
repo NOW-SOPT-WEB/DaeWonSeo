@@ -23,6 +23,6 @@ export const attachEventListeners = () => {
   // 모달에 있는 구매하기 버튼을 클릭하면 모든 요소 삭제되고 구매완료됐다는 alert를 띄움
   selectors.modalPurchaseBtn.addEventListener("click", () => {
     updateCartList();
-    alert("구매가 완료되었습니다.");
+    window.alert("구매가 완료되었습니다.");
   });
 };
