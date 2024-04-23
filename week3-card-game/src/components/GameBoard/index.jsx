@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import LevelButton from "@/components/GameBoard/_components/LevelButton";
 
 export default function GameBoard() {
-  return <BoardContainer>game board</BoardContainer>;
+  return (
+    <BoardContainer>
+      <LevelButton>dsd</LevelButton>
+      <LevelButton>dsd</LevelButton>
+    </BoardContainer>
+  );
 }
 
 const BoardContainer = styled.div`

@@ -19,8 +19,7 @@ const fontSize = {
 
 const colors = {
   background: "linear-gradient( #0257B6, #00B1FC)",
-  fontPrimary: "black",
-  fontSecondary: "gray",
+  button: "linear-gradient(to right, #F24F08, #FD7C50)",
   primary: "#FF9E16",
   secondary: "#BA2623",
   hover: "#00a0ff50",
