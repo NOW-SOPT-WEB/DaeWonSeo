@@ -16,9 +16,7 @@ export const attachEventListeners = () => {
   selectors.selectAllCheckbox.addEventListener("change", selectItems);
 
   // 구매하기 버튼 클릭하면 모달창 띄움
-  selectors.purchaseBtn.addEventListener("click", () => {
-    showPurchaseModal();
-  });
+  selectors.purchaseBtn.addEventListener("click", showPurchaseModal);
 
   // 모달에 있는 구매하기 버튼을 클릭하면 모든 요소 삭제되고 구매완료됐다는 alert를 띄움
   selectors.modalPurchaseBtn.addEventListener("click", () => {
