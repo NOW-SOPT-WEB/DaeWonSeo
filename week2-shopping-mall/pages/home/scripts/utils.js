@@ -52,7 +52,7 @@ export const displayItems = (filteredItems) => {
         return;
       }
 
-      cartList.push(itemInfo);
+      cartList = [...cartList, itemInfo];
       sessionStorage.setItem("cartList", JSON.stringify(cartList));
       window.location.href = "./../../pages/cart/cart.html";
     });

@@ -45,7 +45,7 @@ export const displayTable = (cartList) => {
     checkbox.addEventListener("change", (e) => {
       const isChecked = e.target.checked;
       if (isChecked) {
-        selectedItems.push(currentItem);
+        selectedItems = [...selectedItems, currentItem];
       } else {
         selectedItems = selectedItems.filter(
           (item) => item.id !== currentItem.id
@@ -72,7 +72,7 @@ export const selectItems = (e) => {
       const itemId = Number(checkbox.id.replace("checkbox-", ""));
       const itemToAdd = currentCartList.find((item) => item.id === itemId);
 
-      if (itemToAdd) selectedItems.push(itemToAdd);
+      if (itemToAdd) selectedItems = [...selectedItems, itemToAdd];
     }
   });
 };
