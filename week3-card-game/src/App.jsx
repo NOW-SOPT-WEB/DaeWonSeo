@@ -1,14 +1,11 @@
-import { useState } from "react";
-import styled from "styled-components";
+import GameBoard from "./components/GameBoard";
+import Header from "./components/Header";
 
 function App() {
-  const MyButton = styled.button`
-    background-color: aqua;
-  `;
-
   return (
     <>
-      <MyButton>초기화면</MyButton>
+      <Header />
+      <GameBoard />
     </>
   );
 }
