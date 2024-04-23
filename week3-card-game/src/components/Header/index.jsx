@@ -21,7 +21,7 @@ const HeaderContainer = styled.header`
   border: 0.5rem solid ${({ theme }) => theme.colors.secondary};
   position: sticky;
   top: 0;
-  height: 10rem;
+  height: 20vh;
   background: ${({ theme }) => theme.colors.primary};
 `;
 

@@ -18,7 +18,7 @@ const fontSize = {
 };
 
 const colors = {
-  background: "#fff",
+  background: "linear-gradient( #3490FF, #AFD1F2)",
   fontPrimary: "black",
   fontSecondary: "gray",
   primary: "#FF9E16",
