@@ -10,14 +10,19 @@ const fontSize = {
   base: "1rem",
   md: "1.25rem",
   lg: "1.5rem",
+  xl: "1.75rem",
+  "2xl": "2rem",
+  "3xl": "2.5rem",
+  "4xl": "3rem",
+  "5xl": "3.5rem",
 };
 
-const lightversion = {
+const colors = {
   background: "#fff",
   fontPrimary: "black",
   fontSecondary: "gray",
-  primary: "#00a0ff",
-  secondary: "#ddd",
+  primary: "#FF9E16",
+  secondary: "#BA2623",
   hover: "#00a0ff50",
 };
 
@@ -30,7 +35,7 @@ const theme = {
   windowSize,
   repo,
   fontSize,
-  lightversion,
+  colors,
 };
 
 export default theme;
