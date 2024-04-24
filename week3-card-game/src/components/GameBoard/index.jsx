@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
@@ -17,6 +18,7 @@ export default function GameBoard({
   onAddSolvedCards,
 }) {
   const { level, cards, flippedCards, solvedCards } = gameStatus;
+  const resetFlippedCardsTimeoutIdRef = useRef(null);
 
   const handleCardClick = (id) => {
     if (
@@ -38,12 +40,20 @@ export default function GameBoard({
         onAddSolvedCards(newFlippedCards);
         onResetFlippedCards();
       } else {
-        setTimeout(() => {
+        resetFlippedCardsTimeoutIdRef.current = setTimeout(() => {
           onResetFlippedCards();
         }, 1000);
       }
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (resetFlippedCardsTimeoutIdRef.current) {
+        clearTimeout(resetFlippedCardsTimeoutIdRef.current);
+      }
+    };
+  }, [flippedCards]);
 
   return (
     <BoardContainer>

@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+
 import GameBoard from "@/components/GameBoard";
 import Header from "@/components/Header";
 import frozenImagesInfo from "@/constants/images";
