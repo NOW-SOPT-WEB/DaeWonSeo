@@ -4,8 +4,11 @@ import LevelButton from "@/components/GameBoard/_components/LevelButton";
 export default function GameBoard() {
   return (
     <BoardContainer>
-      <LevelButton>dsd</LevelButton>
-      <LevelButton>dsd</LevelButton>
+      <ButtonContainer>
+        <LevelButton>Easy</LevelButton>
+        <LevelButton>Normal</LevelButton>
+        <LevelButton>Hard</LevelButton>
+      </ButtonContainer>
     </BoardContainer>
   );
 }
@@ -15,4 +18,12 @@ const BoardContainer = styled.div`
   flex-direction: column;
   min-height: 80vh;
   background: ${({ theme }) => theme.colors.background};
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  margin: 2rem auto;
 `;
