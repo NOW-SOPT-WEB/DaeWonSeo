@@ -16,7 +16,7 @@ export default function GameBoard() {
 const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 85vh;
   background: ${({ theme }) => theme.colors.background};
 `;
 
