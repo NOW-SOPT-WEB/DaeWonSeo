@@ -10,7 +10,26 @@ export default function GameBoard() {
         <LevelButton>Normal</LevelButton>
         <LevelButton>Hard</LevelButton>
       </ButtonContainer>
-      <MonsterCard />
+      <CardsContainer>
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+        <MonsterCard />
+      </CardsContainer>
     </BoardContainer>
   );
 }
@@ -28,4 +47,14 @@ const ButtonContainer = styled.div`
   align-items: center;
   gap: 4rem;
   margin: 2rem auto;
+`;
+
+const CardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 4rem 0;
+  padding: 0 10rem;
 `;
