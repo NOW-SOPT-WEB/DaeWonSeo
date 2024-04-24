@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
+import MonsterCard from "./_components/MonsterCard";
 
 export default function GameBoard() {
   return (
@@ -9,6 +10,7 @@ export default function GameBoard() {
         <LevelButton>Normal</LevelButton>
         <LevelButton>Hard</LevelButton>
       </ButtonContainer>
+      <MonsterCard />
     </BoardContainer>
   );
 }
