@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export default function Header({ totalCount }) {
+export default function Header({ totalScore, currentScore }) {
   return (
     <HeaderContainer>
       <Title>메이플스토리 카드 맞추기</Title>
       <Count>
-        {0} / {totalCount}
+        {currentScore} / {totalScore}
       </Count>
     </HeaderContainer>
   );

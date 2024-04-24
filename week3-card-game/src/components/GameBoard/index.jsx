@@ -1,23 +1,49 @@
 import styled from "styled-components";
+
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
 import MonsterCard from "@/components/GameBoard/_components/MonsterCard";
-import frozenImagesInfo from "@/constants/images";
 
-export default function GameBoard({ level, onLevelChange, totalCount }) {
-  const levels = [
-    { name: "Easy", value: "easy" },
-    { name: "Normal", value: "normal" },
-    { name: "Hard", value: "hard" },
-  ];
+const levels = [
+  { name: "Easy", value: "easy" },
+  { name: "Normal", value: "normal" },
+  { name: "Hard", value: "hard" },
+];
 
-  const imagesInfo = [...frozenImagesInfo];
-  const selectedImages = imagesInfo.slice(0, totalCount / 2);
-  const cardSet = selectedImages.map((imageItem) => ({
-    name: imageItem.name,
-    url: imageItem.url,
-    description: imageItem.description,
-  }));
-  const cardList = [...cardSet, ...cardSet].sort(() => Math.random() - 0.5);
+export default function GameBoard({
+  gameStatus,
+  onChangeLevel,
+  onAddFlippedCards,
+  onResetFlippedCards,
+  onAddSolvedCards,
+}) {
+  const { level, cards, flippedCards, solvedCards } = gameStatus;
+
+  const handleCardClick = (id) => {
+    if (
+      flippedCards.length === 2 ||
+      solvedCards.includes(id) ||
+      flippedCards.includes(id)
+    )
+      return;
+
+    const newFlippedCards = [...flippedCards, id];
+    onAddFlippedCards(id);
+
+    if (flippedCards.length === 1) {
+      const [firstCard, secondCard] = newFlippedCards;
+      const firstCardName = cards.find((card) => card.id === firstCard).name;
+      const secondCardName = cards.find((card) => card.id === secondCard).name;
+
+      if (firstCardName === secondCardName) {
+        onAddSolvedCards(newFlippedCards);
+        onResetFlippedCards();
+      } else {
+        setTimeout(() => {
+          onResetFlippedCards();
+        }, 1000);
+      }
+    }
+  };
 
   return (
     <BoardContainer>
@@ -25,7 +51,7 @@ export default function GameBoard({ level, onLevelChange, totalCount }) {
         {levels.map(({ name, value }) => (
           <LevelButton
             key={value}
-            onLevelChange={() => onLevelChange(value)}
+            onLevelChange={() => onChangeLevel(value)}
             isSelected={level === value}
           >
             {name}
@@ -33,11 +59,15 @@ export default function GameBoard({ level, onLevelChange, totalCount }) {
         ))}
       </ButtonContainer>
       <CardsContainer>
-        {cardList.map((imageItem, index) => (
+        {cards.map((card) => (
           <MonsterCard
-            key={`${imageItem.name}-${index}`}
-            frontImageUrl={imageItem.url}
-            description={imageItem.description}
+            key={card.id}
+            frontImageUrl={card.url}
+            description={card.description}
+            onClick={() => handleCardClick(card.id)}
+            isFlipped={
+              flippedCards.includes(card.id) || solvedCards.includes(card.id)
+            }
           />
         ))}
       </CardsContainer>

@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import backImageUrl from "@/assets/images/card-background.png";
 
-export default function MonsterCard({ frontImageUrl, description }) {
+export default function MonsterCard({
+  frontImageUrl,
+  description,
+  onClick,
+  isFlipped,
+}) {
   return (
     <FlipContainer>
-      <CardContainer>
+      <CardContainer onClick={onClick} isFlipped={isFlipped}>
         <FrontImage src={frontImageUrl} alt={description} />
         <BackImage src={backImageUrl} alt={"카드 뒷면 핑크빈 이미지"} />
       </CardContainer>
@@ -26,10 +31,7 @@ const CardContainer = styled.div`
   position: relative;
   transition: transform 0.5s ease;
   transform-style: preserve-3d;
-
-  &:hover {
-    transform: rotateY(180deg);
-  }
+  transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : null)};
 `;
 
 const FrontImage = styled.img`
