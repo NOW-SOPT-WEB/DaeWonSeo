@@ -1,14 +1,26 @@
 import styled from "styled-components";
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
-import MonsterCard from "./_components/MonsterCard";
+import MonsterCard from "@/components/GameBoard/_components/MonsterCard";
 
-export default function GameBoard() {
+export default function GameBoard({ level, onLevelChange }) {
+  const levels = [
+    { name: "Easy", value: "easy" },
+    { name: "Normal", value: "normal" },
+    { name: "Hard", value: "hard" },
+  ];
+
   return (
     <BoardContainer>
       <ButtonContainer>
-        <LevelButton>Easy</LevelButton>
-        <LevelButton>Normal</LevelButton>
-        <LevelButton>Hard</LevelButton>
+        {levels.map(({ name, value }) => (
+          <LevelButton
+            key={value}
+            onLevelChange={() => onLevelChange(value)}
+            isSelected={level === value}
+          >
+            {name}
+          </LevelButton>
+        ))}
       </ButtonContainer>
       <CardsContainer>
         <MonsterCard />
