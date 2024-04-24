@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import Modal from "@/components/Modal";
 
 export default function Header({
   totalScore,
@@ -7,17 +8,22 @@ export default function Header({
   onResetStatus,
   onSetUpCards,
 }) {
+  const modal = useRef();
   const resetTimeoutIdRef = useRef();
   const setUpCardsTimeoutIdRef = useRef();
 
+  const handleRestartGame = () => {
+    resetTimeoutIdRef.current = setTimeout(() => {
+      onResetStatus();
+      setUpCardsTimeoutIdRef.current = setTimeout(() => {
+        onSetUpCards();
+      }, 1000);
+    }, 1000);
+  };
+
   useEffect(() => {
     if (totalScore === currentScore) {
-      resetTimeoutIdRef.current = setTimeout(() => {
-        onResetStatus();
-        setUpCardsTimeoutIdRef.current = setTimeout(() => {
-          onSetUpCards();
-        }, 1000);
-      }, 1000);
+      modal.current.open();
     }
 
     return () => {
@@ -28,6 +34,13 @@ export default function Header({
 
   return (
     <HeaderContainer>
+      <Modal
+        ref={modal}
+        buttonCaption={"게임으로 돌아가기"}
+        onRestartGame={handleRestartGame}
+      >
+        축하합니다
+      </Modal>
       <Title>메이플스토리 카드 맞추기</Title>
       <Count>
         {currentScore} / {totalScore}

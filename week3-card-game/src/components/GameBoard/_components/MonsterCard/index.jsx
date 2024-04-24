@@ -9,7 +9,7 @@ export default function MonsterCard({
 }) {
   return (
     <FlipContainer>
-      <CardContainer onClick={onClick} isFlipped={isFlipped}>
+      <CardContainer onClick={onClick} $isFlipped={isFlipped}>
         <FrontImage src={frontImageUrl} alt={description} />
         <BackImage src={backImageUrl} alt={"카드 뒷면 핑크빈 이미지"} />
       </CardContainer>
@@ -31,8 +31,8 @@ const CardContainer = styled.div`
   position: relative;
   transition: transform 0.5s ease;
   transform-style: preserve-3d;
-  transform: ${({ isFlipped }) =>
-    isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
+  transform: ${({ $isFlipped }) =>
+    $isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
 `;
 
 const FrontImage = styled.img`
