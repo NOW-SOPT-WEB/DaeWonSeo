@@ -18,6 +18,7 @@ const fontSize = {
 };
 
 const colors = {
+  fontPrimary: "#FCF9F3",
   background: "linear-gradient( #0257B6, #00B1FC)",
   button: "linear-gradient(to right, #F24F08, #FD7C50)",
   primary: "#FF9E16",
