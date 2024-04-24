@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import imageUrl from "@/assets/images/card-background.png";
+import backImageUrl from "@/assets/images/card-background.png";
 import frontImage from "@/assets/images/pig.png";
 
-export default function MonsterCard() {
+export default function MonsterCard({
+  frontImageUrl = frontImage,
+  description,
+}) {
   return (
     <FlipContainer>
       <CardContainer>
-        <FrontImage src={frontImage} />
-        <BackImage src={imageUrl} />
+        <FrontImage src={frontImageUrl} alt="description" />
+        <BackImage src={backImageUrl} />
       </CardContainer>
     </FlipContainer>
   );

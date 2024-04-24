@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
 import MonsterCard from "@/components/GameBoard/_components/MonsterCard";
+import frozenImagesInfo from "@/constants/images";
 
 export default function GameBoard({ level, onLevelChange }) {
   const levels = [
@@ -8,6 +9,7 @@ export default function GameBoard({ level, onLevelChange }) {
     { name: "Normal", value: "normal" },
     { name: "Hard", value: "hard" },
   ];
+  console.log(frozenImagesInfo);
 
   return (
     <BoardContainer>
@@ -23,24 +25,13 @@ export default function GameBoard({ level, onLevelChange }) {
         ))}
       </ButtonContainer>
       <CardsContainer>
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
-        <MonsterCard />
+        {frozenImagesInfo.map((image) => (
+          <MonsterCard
+            key={image.name}
+            frontImageUrl={image.url}
+            description={image.description}
+          />
+        ))}
       </CardsContainer>
     </BoardContainer>
   );
