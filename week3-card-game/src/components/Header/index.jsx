@@ -18,10 +18,10 @@ const HeaderContainer = styled.header`
   align-items: center;
   gap: 0.5rem;
   padding: 4rem;
-  border: 0.5rem solid ${({ theme }) => theme.colors.secondary};
+  border: 0.4rem solid ${({ theme }) => theme.colors.secondary};
   position: sticky;
   top: 0;
-  height: 20vh;
+  height: 15vh;
   background: ${({ theme }) => theme.colors.primary};
 `;
 
@@ -30,5 +30,5 @@ const Title = styled.h1`
 `;
 
 const Count = styled.p`
-  font-size: ${({ theme }) => theme.fontSize["4xl"]};
+  font-size: ${({ theme }) => theme.fontSize["3xl"]};
 `;
