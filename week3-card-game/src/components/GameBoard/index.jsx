@@ -3,13 +3,21 @@ import LevelButton from "@/components/GameBoard/_components/LevelButton";
 import MonsterCard from "@/components/GameBoard/_components/MonsterCard";
 import frozenImagesInfo from "@/constants/images";
 
-export default function GameBoard({ level, onLevelChange }) {
+export default function GameBoard({ level, onLevelChange, totalCount }) {
   const levels = [
     { name: "Easy", value: "easy" },
     { name: "Normal", value: "normal" },
     { name: "Hard", value: "hard" },
   ];
-  console.log(frozenImagesInfo);
+
+  const imagesInfo = [...frozenImagesInfo];
+  const selectedImages = imagesInfo.slice(0, totalCount / 2);
+  const cardSet = selectedImages.map((imageItem) => ({
+    name: imageItem.name,
+    url: imageItem.url,
+    description: imageItem.description,
+  }));
+  const cardList = [...cardSet, ...cardSet].sort(() => Math.random() - 0.5);
 
   return (
     <BoardContainer>
@@ -25,11 +33,11 @@ export default function GameBoard({ level, onLevelChange }) {
         ))}
       </ButtonContainer>
       <CardsContainer>
-        {frozenImagesInfo.map((image) => (
+        {cardList.map((imageItem, index) => (
           <MonsterCard
-            key={image.name}
-            frontImageUrl={image.url}
-            description={image.description}
+            key={`${imageItem.name}-${index}`}
+            frontImageUrl={imageItem.url}
+            description={imageItem.description}
           />
         ))}
       </CardsContainer>
