@@ -20,4 +20,5 @@ const Button = styled.button`
   height: 4rem;
   font-size: ${({ theme }) => theme.fontSize.md};
   transition: background-color 0.3s ease;
+  cursor: pointer;
 `;
