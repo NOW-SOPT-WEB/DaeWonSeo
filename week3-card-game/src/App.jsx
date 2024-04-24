@@ -2,21 +2,24 @@ import { useState } from "react";
 import GameBoard from "@/components/GameBoard";
 import Header from "@/components/Header";
 
+const COUNTS = {
+  easy: 10,
+  normal: 14,
+  hard: 18,
+};
+
 function App() {
   const [level, setLevel] = useState("easy");
-
-  const LEVELS = {
-    easy: 10,
-    normal: 14,
-    hard: 18,
-  };
-
-  const totalCount = LEVELS[level];
+  const totalCount = COUNTS[level];
 
   return (
     <>
       <Header totalCount={totalCount} />
-      <GameBoard level={level} onLevelChange={setLevel} />
+      <GameBoard
+        level={level}
+        onLevelChange={setLevel}
+        totalCount={totalCount}
+      />
     </>
   );
 }
