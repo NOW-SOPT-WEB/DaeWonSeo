@@ -16,7 +16,7 @@ const initialGameStatus = {
   solvedCards: [],
 };
 
-function reducer(state, action) {
+const reducer = (state, action) => {
   if (action.type === "SET_LEVEL") {
     return { ...state, level: action.level };
   }
@@ -34,6 +34,12 @@ function reducer(state, action) {
     return {
       ...state,
       cards: shuffledCards,
+    };
+  }
+
+  if (action.type === "RESET_STATUS") {
+    return {
+      ...state,
       flippedCards: [],
       solvedCards: [],
     };
@@ -56,7 +62,7 @@ function reducer(state, action) {
       solvedCards: [...state.solvedCards, ...action.solvedCardsData],
     };
   }
-}
+};
 
 function App() {
   const [gameStatus, dispatch] = useReducer(reducer, initialGameStatus);
@@ -67,11 +73,17 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "SETUP_CARDS" });
+    dispatch({ type: "RESET_STATUS" });
   }, [level]);
 
   return (
     <>
-      <Header currentScore={currentScore} totalScore={totalScore} />
+      <Header
+        currentScore={currentScore}
+        totalScore={totalScore}
+        onResetStatus={() => dispatch({ type: "RESET_STATUS" })}
+        onSetUpCards={() => dispatch({ type: "SETUP_CARDS" })}
+      />
       <GameBoard
         gameStatus={gameStatus}
         onChangeLevel={(newLevel) =>

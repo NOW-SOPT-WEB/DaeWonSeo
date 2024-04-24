@@ -1,6 +1,31 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-export default function Header({ totalScore, currentScore }) {
+export default function Header({
+  totalScore,
+  currentScore,
+  onResetStatus,
+  onSetUpCards,
+}) {
+  const resetTimeoutIdRef = useRef();
+  const setUpCardsTimeoutIdRef = useRef();
+
+  useEffect(() => {
+    if (totalScore === currentScore) {
+      resetTimeoutIdRef.current = setTimeout(() => {
+        onResetStatus();
+        setUpCardsTimeoutIdRef.current = setTimeout(() => {
+          onSetUpCards();
+        }, 1000);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(resetTimeoutIdRef.current);
+      clearTimeout(setUpCardsTimeoutIdRef.current);
+    };
+  }, [totalScore, currentScore, onResetStatus, onSetUpCards]);
+
   return (
     <HeaderContainer>
       <Title>메이플스토리 카드 맞추기</Title>
