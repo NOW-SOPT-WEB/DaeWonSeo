@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export default function Header() {
+export default function Header({ level }) {
+  let count = 0;
+  if (level === "easy") count = 10;
+  if (level === "normal") count = 14;
+  if (level === "hard") count = 18;
+
   return (
     <HeaderContainer>
       <Title>메이플스토리 카드 맞추기</Title>
       <Count>
-        {0} / {5}
+        {0} / {count}
       </Count>
     </HeaderContainer>
   );
