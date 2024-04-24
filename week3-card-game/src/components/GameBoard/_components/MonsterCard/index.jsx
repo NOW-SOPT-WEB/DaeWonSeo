@@ -31,7 +31,8 @@ const CardContainer = styled.div`
   position: relative;
   transition: transform 0.5s ease;
   transform-style: preserve-3d;
-  transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : null)};
+  transform: ${({ isFlipped }) =>
+    isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
 `;
 
 const FrontImage = styled.img`
