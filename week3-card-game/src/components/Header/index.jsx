@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+
 import Modal from "@/components/Modal";
 
 export default function Header({
@@ -8,9 +9,9 @@ export default function Header({
   onResetStatus,
   onSetUpCards,
 }) {
-  const modal = useRef();
-  const resetTimeoutIdRef = useRef();
-  const setUpCardsTimeoutIdRef = useRef();
+  const modal = useRef(null);
+  const resetTimeoutIdRef = useRef(null);
+  const setUpCardsTimeoutIdRef = useRef(null);
 
   const handleRestartGame = () => {
     resetTimeoutIdRef.current = setTimeout(() => {

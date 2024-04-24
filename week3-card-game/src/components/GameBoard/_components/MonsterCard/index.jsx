@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import backImageUrl from "@/assets/images/card-background.png";
 
 export default function MonsterCard({

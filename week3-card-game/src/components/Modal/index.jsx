@@ -1,12 +1,11 @@
-import { useRef } from "react";
-import { forwardRef, useImperativeHandle } from "react";
+import { useRef, forwardRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 
 const Modal = forwardRef(function Modal(
   { children, buttonCaption, onRestartGame },
   ref
 ) {
-  const dialog = useRef();
+  const dialog = useRef(null);
 
   useImperativeHandle(ref, () => {
     return {
