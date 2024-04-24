@@ -19,8 +19,6 @@ const HeaderContainer = styled.header`
   gap: 0.5rem;
   padding: 4rem;
   border: 0.4rem solid ${({ theme }) => theme.colors.secondary};
-  position: sticky;
-  top: 0;
   height: 15vh;
   background: ${({ theme }) => theme.colors.primary};
 `;
