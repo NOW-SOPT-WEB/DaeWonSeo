@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import GameBoard from "@/components/GameBoard";
 import Header from "@/components/Header";
 import frozenImagesInfo from "@/constants/images";
@@ -9,76 +9,64 @@ const COUNTS = {
   hard: 18,
 };
 
-function App() {
-  const [gameStatus, setGameStatus] = useState({
-    level: "easy",
-    cards: [],
-    flippedCards: [],
-    solvedCards: [],
-  });
+const initialGameStatus = {
+  level: "easy",
+  cards: [],
+  flippedCards: [],
+  solvedCards: [],
+};
 
-  const { level } = gameStatus;
-  const totalCount = COUNTS[level];
-  const totalScore = totalCount / 2;
-  const currentScore = gameStatus.solvedCards.length / 2;
+function reducer(state, action) {
+  if (action.type === "SET_LEVEL") {
+    return { ...state, level: action.level };
+  }
 
-  const cardsSetup = () => {
+  if (action.type === "SETUP_CARDS") {
     const imagesInfo = [...frozenImagesInfo];
     const shuffledImageInfo = imagesInfo.sort(() => Math.random() - 0.5);
-
+    const totalCount = COUNTS[state.level];
     const selectedImages = shuffledImageInfo.slice(0, totalCount / 2);
     const cardSet = selectedImages.flatMap((card) => [
       { ...card, id: `${card.name}-1` },
       { ...card, id: `${card.name}-2` },
     ]);
-
     const shuffledCards = [...cardSet].sort(() => Math.random() - 0.5);
-
-    setGameStatus((prev) => ({
-      ...prev,
+    return {
+      ...state,
       cards: shuffledCards,
-    }));
-  };
-
-  const cardsReset = () => {
-    setGameStatus((prev) => ({
-      ...prev,
       flippedCards: [],
       solvedCards: [],
-    }));
-  };
+    };
+  }
 
-  const handleChangeLevel = (newLevel) => {
-    setGameStatus((prev) => ({
-      ...prev,
-      level: newLevel,
-    }));
-  };
+  if (action.type === "ADD_FLIPPED_CARD") {
+    return {
+      ...state,
+      flippedCards: [...state.flippedCards, action.id],
+    };
+  }
 
-  const handleAddFlippedCards = (id) => {
-    setGameStatus((prev) => ({
-      ...prev,
-      flippedCards: [...prev.flippedCards, id],
-    }));
-  };
+  if (action.type === "RESET_FLIPPED_CARDS") {
+    return { ...state, flippedCards: [] };
+  }
 
-  const handleResetFlippedCards = () => {
-    setGameStatus((prev) => ({
-      ...prev,
-      flippedCards: [],
-    }));
-  };
+  if (action.type === "ADD_SOLVED_CARDS") {
+    return {
+      ...state,
+      solvedCards: [...state.solvedCards, ...action.solvedCardsData],
+    };
+  }
+}
 
-  const handleAddSolvedCards = (solvedCardsData) => {
-    setGameStatus((prev) => ({
-      ...prev,
-      solvedCards: [...prev.solvedCards, ...solvedCardsData],
-    }));
-  };
+function App() {
+  const [gameStatus, dispatch] = useReducer(reducer, initialGameStatus);
+  const { level, solvedCards } = gameStatus;
+  const totalCount = COUNTS[level];
+  const totalScore = totalCount / 2;
+  const currentScore = solvedCards.length / 2;
 
   useEffect(() => {
-    cardsReset();
-    cardsSetup();
+    dispatch({ type: "SETUP_CARDS" });
   }, [level]);
 
   return (
@@ -86,10 +74,14 @@ function App() {
       <Header currentScore={currentScore} totalScore={totalScore} />
       <GameBoard
         gameStatus={gameStatus}
-        onChangeLevel={handleChangeLevel}
-        onAddSolvedCards={handleAddSolvedCards}
-        onAddFlippedCards={handleAddFlippedCards}
-        onResetFlippedCards={handleResetFlippedCards}
+        onChangeLevel={(newLevel) =>
+          dispatch({ type: "SET_LEVEL", level: newLevel })
+        }
+        onAddSolvedCards={(solvedCardsData) =>
+          dispatch({ type: "ADD_SOLVED_CARDS", solvedCardsData })
+        }
+        onAddFlippedCards={(id) => dispatch({ type: "ADD_FLIPPED_CARD", id })}
+        onResetFlippedCards={() => dispatch({ type: "RESET_FLIPPED_CARDS" })}
       />
     </>
   );
