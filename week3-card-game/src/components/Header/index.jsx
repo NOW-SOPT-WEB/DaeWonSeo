@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
+import styled, { css, keyframes } from "styled-components";
 
 import Modal from "@/components/Modal";
 
@@ -9,27 +9,36 @@ export default function Header({
   onResetStatus,
   onSetUpCards,
 }) {
-  const modal = useRef(null);
-  const resetTimeoutIdRef = useRef(null);
-  const setUpCardsTimeoutIdRef = useRef(null);
+  const [scoreIncreased, setScoreIncreased] = useState(false);
+  const modalRef = useRef(null);
 
   const handleRestartGame = () => {
-    resetTimeoutIdRef.current = setTimeout(() => {
+    setTimeout(() => {
       onResetStatus();
-      setUpCardsTimeoutIdRef.current = setTimeout(() => {
+      setTimeout(() => {
         onSetUpCards();
       }, 800);
     }, 800);
   };
 
-  if (totalScore === currentScore) {
-    modal.current.open();
-  }
+  useEffect(() => {
+    if (totalScore === currentScore) {
+      modalRef.current.open();
+    }
+  }, [totalScore, currentScore]);
+
+  useEffect(() => {
+    if (currentScore > 0) {
+      setScoreIncreased(true);
+      const timeoutId = setTimeout(() => setScoreIncreased(false), 500);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [currentScore]);
 
   return (
     <HeaderContainer>
       <Modal
-        ref={modal}
+        ref={modalRef}
         buttonCaption={"게임으로 돌아가기"}
         onRestartGame={handleRestartGame}
       >
@@ -37,7 +46,7 @@ export default function Header({
       </Modal>
       <Title>메이플스토리 카드 맞추기</Title>
       <BottomContainer>
-        <Score>
+        <Score scoreIncreased={scoreIncreased}>
           {currentScore} / {totalScore}
         </Score>
         <ResetButton onClick={handleRestartGame}>Reset</ResetButton>
@@ -45,6 +54,12 @@ export default function Header({
     </HeaderContainer>
   );
 }
+
+const highlightScore = keyframes`
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 1; filter: brightness(150%); }
+  100% { transform: scale(1); opacity: 1; }
+`;
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -82,10 +97,15 @@ const ResetButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
 const Score = styled.p`
   font-size: ${({ theme }) => theme.fontSize["3xl"]};
+  animation: ${({ scoreIncreased }) =>
+    scoreIncreased &&
+    css`
+      ${highlightScore} 0.5s ease
+    `};
 `;

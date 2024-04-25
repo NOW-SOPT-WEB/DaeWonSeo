@@ -22,7 +22,8 @@ export default function GameBoard({
     if (
       flippedCards.length === 2 ||
       solvedCards.includes(id) ||
-      flippedCards.includes(id)
+      flippedCards.includes(id) ||
+      cards.length === 0
     )
       return;
 
