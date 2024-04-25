@@ -5,23 +5,23 @@ const Modal = forwardRef(function Modal(
   { children, buttonCaption, onRestartGame },
   ref
 ) {
-  const dialog = useRef(null);
+  const dialogRef = useRef(null);
 
   useImperativeHandle(ref, () => {
     return {
       open() {
-        dialog.current.showModal();
+        dialogRef.current.showModal();
       },
     };
   });
 
   const handleClose = () => {
-    dialog.current.close();
+    dialogRef.current.close();
     onRestartGame();
   };
 
   return (
-    <ModalContainer ref={dialog}>
+    <ModalContainer ref={dialogRef}>
       <ContentWrapper>
         <ModalContent>{children}</ModalContent>
         <form method="dialog">
