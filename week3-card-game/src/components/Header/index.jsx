@@ -12,6 +12,7 @@ export default function Header({
   const [scoreIncreased, setScoreIncreased] = useState(false);
   const modalRef = useRef(null);
 
+  // 게임을 다시 실행하는 함수
   const handleRestartGame = () => {
     setTimeout(() => {
       onResetStatus();
