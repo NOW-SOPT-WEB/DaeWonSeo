@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
 import Modal from "@/components/Modal";
@@ -18,20 +18,13 @@ export default function Header({
       onResetStatus();
       setUpCardsTimeoutIdRef.current = setTimeout(() => {
         onSetUpCards();
-      }, 1000);
-    }, 1000);
+      }, 800);
+    }, 800);
   };
 
-  useEffect(() => {
-    if (totalScore === currentScore) {
-      modal.current.open();
-    }
-
-    return () => {
-      clearTimeout(resetTimeoutIdRef.current);
-      clearTimeout(setUpCardsTimeoutIdRef.current);
-    };
-  }, [totalScore, currentScore, onResetStatus, onSetUpCards]);
+  if (totalScore === currentScore) {
+    modal.current.open();
+  }
 
   return (
     <HeaderContainer>
@@ -43,9 +36,12 @@ export default function Header({
         축하합니다
       </Modal>
       <Title>메이플스토리 카드 맞추기</Title>
-      <Count>
-        {currentScore} / {totalScore}
-      </Count>
+      <BottomContainer>
+        <Score>
+          {currentScore} / {totalScore}
+        </Score>
+        <ResetButton onClick={handleRestartGame}>Reset</ResetButton>
+      </BottomContainer>
     </HeaderContainer>
   );
 }
@@ -62,10 +58,34 @@ const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.primary};
 `;
 
+const BottomContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+`;
+
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSize["4xl"]};
 `;
 
-const Count = styled.p`
+const ResetButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  width: 8rem;
+  height: 3rem;
+  font-size: ${({ theme }) => theme.fontSize.md};
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Score = styled.p`
   font-size: ${({ theme }) => theme.fontSize["3xl"]};
 `;
