@@ -2,12 +2,14 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 
+// forwarRef를 사용하여 참조 전달
 const Modal = forwardRef(function Modal(
   { children, buttonCaption, onRestartGame },
   ref
 ) {
   const dialogRef = useRef(null);
 
+  // useImperativeHandle로 컴포넌트 내에서 모달 띄우는 메소드를 정의
   useImperativeHandle(ref, () => {
     return {
       open() {
@@ -16,11 +18,13 @@ const Modal = forwardRef(function Modal(
     };
   });
 
+  // 모달 창을 닫고나서 카드 리셋 후 다시 시작
   const handleClose = () => {
     dialogRef.current.close();
     onRestartGame();
   };
 
+  // createPortal로 렌더링 시 모달을 적절한 위치로 이동
   return createPortal(
     <ModalContainer ref={dialogRef}>
       <ContentWrapper>
