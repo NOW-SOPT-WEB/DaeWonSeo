@@ -1,4 +1,5 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 const Modal = forwardRef(function Modal(
@@ -20,7 +21,7 @@ const Modal = forwardRef(function Modal(
     onRestartGame();
   };
 
-  return (
+  return createPortal(
     <ModalContainer ref={dialogRef}>
       <ContentWrapper>
         <ModalContent>{children}</ModalContent>
@@ -28,7 +29,8 @@ const Modal = forwardRef(function Modal(
           <ModalButton onClick={handleClose}>{buttonCaption}</ModalButton>
         </form>
       </ContentWrapper>
-    </ModalContainer>
+    </ModalContainer>,
+    document.getElementById("modal-root")
   );
 });
 
