@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LevelButton from "@/components/GameBoard/_components/LevelButton";
 import MonsterCard from "@/components/GameBoard/_components/MonsterCard";
 
+// 버튼 생성을 위한 level 상수 정의
 const levels = [
   { name: "Easy", value: "easy" },
   { name: "Normal", value: "normal" },
@@ -18,7 +19,9 @@ export default function GameBoard({
 }) {
   const { level, cards, flippedCards, solvedCards } = gameStatus;
 
+  // 카드를 클릭했을 때 함수
   const handleCardClick = (id) => {
+    // 현재 맞추고 있는 카드 쌍(flippedCards) | 이미 맞추어서 뒤집혀진 카드 쌍들(solvedCards) | 다시 시작 하는 경우 cards가 미생성 검사 하여 return;
     if (
       flippedCards.length === 2 ||
       solvedCards.includes(id) ||
@@ -27,10 +30,12 @@ export default function GameBoard({
     )
       return;
 
+    // 현재 맞추고 있는 카드쌍 구성
     const newFlippedCards = [...flippedCards, id];
     onAddFlippedCards(id);
 
-    if (flippedCards.length === 1) {
+    // 현재 맞추고 있는 카드 쌍이 2개가 됐을 때 서로 일치하는지 검사
+    if (newFlippedCards.length === 2) {
       const [firstCard, secondCard] = newFlippedCards;
       const firstCardName = cards.find((card) => card.id === firstCard).name;
       const secondCardName = cards.find((card) => card.id === secondCard).name;
@@ -39,6 +44,7 @@ export default function GameBoard({
         onAddSolvedCards(newFlippedCards);
         onResetFlippedCards();
       } else {
+        // 서로 일치 하지 않을 때 맞추고 있는 카드 쌍 reset, 애니메이션 효과 자연스럽게 하기 위해서, setTimeout 설정
         setTimeout(() => {
           onResetFlippedCards();
         }, 1000);

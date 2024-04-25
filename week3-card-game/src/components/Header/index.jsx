@@ -21,12 +21,14 @@ export default function Header({
     }, 800);
   };
 
+  // 현재 점수가 전체 점수에 도달 했을 때 모달 띄워서 다시 시작
   useEffect(() => {
     if (totalScore === currentScore) {
       modalRef.current.open();
     }
   }, [totalScore, currentScore]);
 
+  // 현재 스코어가 + 일 때 스코어에 애니메이션 추가
   useEffect(() => {
     if (currentScore > 0) {
       setScoreIncreased(true);
@@ -55,6 +57,7 @@ export default function Header({
   );
 }
 
+// 스코어 증가했을 때 애니메이션 정의
 const highlightScore = keyframes`
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.5); opacity: 1; filter: brightness(150%); }
