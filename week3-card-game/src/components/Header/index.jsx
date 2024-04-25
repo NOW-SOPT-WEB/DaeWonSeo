@@ -92,9 +92,11 @@ const ResetButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  position: fixed;
+  right: 2rem;
   width: 8rem;
   height: 3rem;
+  background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.md};
   transition: transform 0.3s ease;
   cursor: pointer;
