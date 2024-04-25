@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2주차 과제 - 쇼핑몰</title>
+    <link rel="stylesheet" href="./styles/cart.css" />
+    <!-- 이모티콘 추가 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- 폰트 추가 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Nanum+Gothic:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <img id="main-logo" src="../../assets/logo.png" />
+      <h1>장바구니 페이지</h1>
+      <img
+        id="hamburger-logo"
+        class="hamburger-icon"
+        src="../../assets/hamburger-icon.png"
+      />
+    </header>
+    <aside>
+      <section class="side-icon-container">
+        <i id="arrow-icon" class="fas fa-arrow-right"></i>
+      </section>
+      <section class="side-menu-container">
+        <ul>
+          <li>관심 상품 목록</li>
+          <li>관리자 페이지</li>
+          <li id="cart-link">장바구니</li>
+        </ul>
+      </section>
+    </aside>
+    <main>
+      <section class="cart-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" aria-label="모든 상품 선택" /></th>
+              <th colspan="2">상품 정보</th>
+              <th>상품 금액</th>
+              <th>카테고리</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="button-container">
+          <button id="purchase-button">구매하기</button>
+          <button id="home-button">홈으로</button>
+        </div>
+      </section>
+    </main>
+    <footer>웹파트 분들 모두 화이팅!!!</footer>
+    <dialog id="purchase-modal">
+      <div class="modal-container">
+        <div class="modal-title-container">
+          <h2>상품 구매</h2>
+          <div>
+            <button id="modal-close-button" aria-label="모달 닫기">x</button>
+          </div>
+        </div>
+        <div class="modal-content-container"></div>
+        <div class="modal-purchase-container">
+          <div class="modal-price-container"></div>
+          <form class="purchase-button-container" method="dialog">
+            <button id="modal-purchase-button">구매하기</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <script src="../cart/scripts/index.js" type="module"></script>
+  </body>
+</html>
