@@ -1,7 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import UserButton from '@/components/UserButton';
 import UserInput from '@/components/UserInput';
+import { MAIN_ROUTES } from '@/constants/routes';
 
 function SignUpPage() {
+	const navigate = useNavigate();
+
+	const handleClickBack = (): void => {
+		navigate(-1);
+	};
+
 	return (
 		<>
 			<h1 className="mb-10 text-4xl font-bold">회원가입 페이지</h1>
@@ -23,7 +32,7 @@ function SignUpPage() {
 			</div>
 			<div className="flex gap-9">
 				<UserButton title={'회원가입'} />
-				<UserButton title={'뒤로가기'} />
+				<UserButton title={'뒤로가기'} onClick={handleClickBack} />
 			</div>
 		</>
 	);
