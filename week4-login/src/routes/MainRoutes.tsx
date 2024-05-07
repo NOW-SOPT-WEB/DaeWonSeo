@@ -13,7 +13,7 @@ export const MainRoutes = {
 	children: [
 		{
 			path: '/',
-			element: <Navigate replace to={MAIN_ROUTES.SIGN_UP.path} />,
+			element: <Navigate replace to={MAIN_ROUTES.SIGN_IN.path} />,
 		},
 		{
 			path: MAIN_ROUTES.MAIN.path,
