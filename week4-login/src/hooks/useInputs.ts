@@ -1,11 +1,8 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
-interface InitialStateType {
-	[name: string]: string;
-}
-
-export const useInputs = (initialState: InitialStateType) => {
-	const [inputs, setInputs] = useState<InitialStateType>(initialState);
+// 제네릭 타입 T를 사용하여 함수를 정의합니다.
+export const useInputs = <T extends Record<string, string>>(initialState: T) => {
+	const [inputs, setInputs] = useState<T>(initialState);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
