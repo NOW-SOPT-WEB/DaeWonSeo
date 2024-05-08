@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import client from '@/services/client';
 
 interface Response {
@@ -32,7 +33,8 @@ export const userSignIn = async (siginInData: SiginInData): Promise<Response> =>
 		const { data } = await client.post<Response>('/meber/login', siginInData);
 		return data;
 	} catch (e) {
-		return Promise.reject(e);
+		const error = e as AxiosError<Response>;
+		return Promise.reject(error);
 	}
 };
 export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
@@ -40,7 +42,8 @@ export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
 		const { data } = await client.post<Response>('/member/join', signUpData);
 		return data;
 	} catch (e) {
-		return Promise.reject(e);
+		const error = e as AxiosError<Response>;
+		return Promise.reject(error);
 	}
 };
 export const getUserData = async <T>(memberId: number): Promise<ResponseWithData<T>> => {
@@ -52,7 +55,8 @@ export const getUserData = async <T>(memberId: number): Promise<ResponseWithData
 		});
 		return data;
 	} catch (e) {
-		return Promise.reject(e);
+		const error = e as AxiosError<Response>;
+		return Promise.reject(error);
 	}
 };
 export const patchUserPassword = async (userPasswordData: UserPasswordData, memberId: number): Promise<Response> => {
@@ -64,6 +68,7 @@ export const patchUserPassword = async (userPasswordData: UserPasswordData, memb
 		});
 		return data;
 	} catch (e) {
-		return Promise.reject(e);
+		const error = e as AxiosError<Response>;
+		return Promise.reject(error);
 	}
 };

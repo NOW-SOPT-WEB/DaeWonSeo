@@ -1,16 +1,35 @@
 import { useState } from 'react';
 
-// 제네릭 타입 T를 사용하여 함수를 정의합니다.
+import { phoneNumberFormatter } from '@/utils';
+
 export const useInputs = <T extends Record<string, string>>(initialState: T) => {
 	const [inputs, setInputs] = useState<T>(initialState);
 
+	const initialErrorsState = Object.keys(initialState).reduce(
+		(acc, key) => {
+			acc[key] = false;
+			return acc;
+		},
+		{} as Record<string, boolean>,
+	);
+
+	const [errors, setErrors] = useState<Record<string, boolean>>(initialErrorsState);
+
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
+
+		const formattedValue = name === 'phone' ? phoneNumberFormatter(value) : value;
+
 		setInputs((prev) => ({
 			...prev,
-			[name]: value,
+			[name]: name === 'phone' ? formattedValue : value,
+		}));
+
+		setErrors((prev) => ({
+			...prev,
+			[name]: formattedValue === '' ? true : false,
 		}));
 	};
 
-	return { inputs, handleChange };
+	return { inputs, errors, handleChange };
 };
