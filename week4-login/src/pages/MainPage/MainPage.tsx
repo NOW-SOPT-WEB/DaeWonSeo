@@ -1,13 +1,14 @@
 import video from '@/assets/videos/week4-video.mp4';
 import UserButton from '@/components/UserButton';
 import { MAIN_ROUTES } from '@/constants/routes';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function MainPage() {
 	const navigate = useNavigate();
+	const { id } = useParams();
 
 	const handleClickMyPage = (): void => {
-		navigate(`${MAIN_ROUTES.MY_PAGE.path.replace(':id', '1')}`);
+		navigate(`${MAIN_ROUTES.MY_PAGE.path.replace(':id', `${id}`)}`);
 	};
 
 	const handleClickSignUp = (): void => {

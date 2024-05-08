@@ -1,6 +1,6 @@
 export const MAIN_ROUTES = {
 	MAIN: {
-		path: '/main',
+		path: '/main/:id',
 		title: 'Main',
 	},
 	SIGN_IN: {

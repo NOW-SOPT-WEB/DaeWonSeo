@@ -28,15 +28,16 @@ interface UserPasswordData {
 	newPasswordVerification: string;
 }
 
-export const userSignIn = async (siginInData: SiginInData): Promise<Response> => {
+export const userSignIn = async <T>(siginInData: SiginInData): Promise<ResponseWithData<T>> => {
 	try {
-		const { data } = await client.post<Response>('/meber/login', siginInData);
-		return data;
+		const { headers } = await client.post<ResponseWithData<T>>('/member/login', siginInData);
+		return headers.location;
 	} catch (e) {
 		const error = e as AxiosError<Response>;
 		return Promise.reject(error);
 	}
 };
+
 export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
 	try {
 		const { data } = await client.post<Response>('/member/join', signUpData);
@@ -46,6 +47,7 @@ export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
 		return Promise.reject(error);
 	}
 };
+
 export const getUserData = async <T>(memberId: number): Promise<ResponseWithData<T>> => {
 	try {
 		const { data } = await client.get<ResponseWithData<T>>('member/info', {
@@ -59,6 +61,7 @@ export const getUserData = async <T>(memberId: number): Promise<ResponseWithData
 		return Promise.reject(error);
 	}
 };
+
 export const patchUserPassword = async (userPasswordData: UserPasswordData, memberId: number): Promise<Response> => {
 	try {
 		const { data } = await client.patch<Response>('/member/password', userPasswordData, {

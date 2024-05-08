@@ -23,16 +23,15 @@ function SignInPage() {
 	};
 
 	const handleClickSignIn = async (): Promise<void> => {
+		console.log(inputs);
 		try {
-			const response = await userSignIn(inputs);
-			console.log(response);
+			const memberId = await userSignIn(inputs);
+			navigate(MAIN_ROUTES.MAIN.path.replace(':id', `${memberId}`));
 		} catch (e) {
 			if (isAxiosError(e)) {
 				alert(e.response?.data.message);
 			}
 		}
-
-		navigate(MAIN_ROUTES.SIGN_IN.path.replace(':id', `${membersId}`));
 	};
 
 	return (
