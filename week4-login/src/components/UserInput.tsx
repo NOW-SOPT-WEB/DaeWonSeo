@@ -1,14 +1,17 @@
 interface UserInputProps {
+	name: string;
 	title: string;
+	value: string;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	children?: React.ReactNode;
 }
 
-function UserInput({ title, children }: UserInputProps) {
+function UserInput({ name, title, value, onChange, children }: UserInputProps) {
 	return (
 		<form className="flex h-10 w-5/6 items-center text-lg font-semibold">
 			<h1 className="w-1/4 ">{title}</h1>
 			<div className="flex w-3/4 flex-col gap-4">
-				<input className="h-full w-full rounded bg-main-gradient p-3" />
+				<input name={name} value={value} onChange={onChange} className="h-full w-full rounded bg-main-gradient p-3" />
 				{children}
 			</div>
 		</form>
