@@ -31,5 +31,5 @@ export const useInputs = <T extends Record<string, string>>(initialState: T) => 
 		}));
 	};
 
-	return { inputs, errors, handleChange };
+	return { inputs, errors, handleChange, setInputs };
 };

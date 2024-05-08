@@ -10,6 +10,12 @@ interface ResponseWithData<T> extends Response {
 	data: T;
 }
 
+interface ResponseWithUserData {
+	authenticationId: string;
+	nickname: string;
+	phone: string;
+}
+
 interface SiginInData {
 	authenticationId: string;
 	password: string;
@@ -48,14 +54,15 @@ export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
 	}
 };
 
-export const getUserData = async <T>(memberId: number): Promise<ResponseWithData<T>> => {
+export const getUserData = async <T>(memberId: number): Promise<ResponseWithUserData<T>> => {
 	try {
-		const { data } = await client.get<ResponseWithData<T>>('member/info', {
+		const { data } = await client.get<ResponseWithUserData<T>>('member/info', {
 			headers: {
 				memberId: memberId,
 			},
 		});
-		return data;
+		const { authenticationId, nickname, phone } = data.data as ResponseWithUserData;
+		return { authenticationId, nickname, phone };
 	} catch (e) {
 		const error = e as AxiosError<Response>;
 		return Promise.reject(error);

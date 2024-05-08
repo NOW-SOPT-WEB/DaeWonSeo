@@ -23,8 +23,14 @@ function SignInPage() {
 	};
 
 	const handleClickSignIn = async (): Promise<void> => {
-		console.log(inputs);
 		try {
+			const isInputsEmpty = Object.values(inputs).some((value) => value === '');
+
+			if (isInputsEmpty) {
+				alert('입력 값을 확인해주세요~');
+				return;
+			}
+
 			const memberId = await userSignIn(inputs);
 			navigate(MAIN_ROUTES.MAIN.path.replace(':id', `${memberId}`));
 		} catch (e) {
