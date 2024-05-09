@@ -5,7 +5,7 @@ interface UserButtonProps {
 
 function UserButton({ title, onClick }: UserButtonProps) {
 	return (
-		<button type="button" onClick={onClick} className="bg-secondary rounded px-6 py-3 font-medium text-black">
+		<button type="button" onClick={onClick} className="rounded bg-secondary px-6 py-3 font-medium text-black">
 			{title}
 		</button>
 	);
