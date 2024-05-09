@@ -1,8 +1,8 @@
-import { useRoutes } from "react-router-dom";
-import { MainRoutes } from "@/routes/MainRoutes";
+import { useRoutes } from 'react-router-dom';
+import { MainRoutes } from '@/routes/MainRoutes';
 
 function Routes() {
-  return useRoutes([MainRoutes]);
+	return useRoutes([MainRoutes]);
 }
 
 export default Routes;
