@@ -93,21 +93,18 @@ function MyPage() {
 								title={'기존 비밀번호'}
 								name={'previousPassword'}
 								value={inputs.previousPassword}
-								isPassword={true}
 								onChange={handleChange}
 							/>
 							<UserInput
 								title={'신규 비밀번호'}
 								name={'newPassword'}
 								value={inputs.newPassword}
-								isPassword={true}
 								onChange={handleChange}
 							/>
 							<UserInput
 								title={'비밀번호 확인'}
 								name={'newPasswordVerification'}
 								value={inputs.newPasswordVerification}
-								isPassword={true}
 								onChange={handleChange}
 							/>
 							<UserButton title={'비밀번호 변경'} onClick={handleChangePassword} />
