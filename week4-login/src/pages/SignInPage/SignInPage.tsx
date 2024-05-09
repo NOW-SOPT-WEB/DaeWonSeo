@@ -7,6 +7,7 @@ import { MAIN_ROUTES } from '@/constants/routes';
 import loginImage from '@/assets/images/login-title.png';
 import { useInputs } from '@/hooks/useInputs';
 import { userSignIn } from '@/services/auth';
+import { useState } from 'react';
 
 const initialInputs = {
 	authenticationId: '',
@@ -14,7 +15,8 @@ const initialInputs = {
 };
 
 function SignInPage() {
-	const { inputs, errors, handleChange } = useInputs(initialInputs);
+	const { inputs, errors, setErrors, handleChange } = useInputs(initialInputs);
+	const [isSubmit, setIsSubmit] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -24,10 +26,21 @@ function SignInPage() {
 
 	const handleClickSignIn = async (): Promise<void> => {
 		try {
-			const isInputsEmpty = Object.values(inputs).some((value) => value === '');
+			setIsSubmit(true);
 
-			if (isInputsEmpty) {
-				alert('입력 값을 확인해주세요~');
+			const isEmptyInput = Object.keys(inputs).some((key) => {
+				const inputKey = key as keyof typeof inputs;
+				const isEmpty = inputs[inputKey] === '';
+				if (isEmpty) {
+					setErrors((prev) => ({ ...prev, [key]: true }));
+					return isEmpty;
+				} else {
+					setErrors((prev) => ({ ...prev, [key]: false }));
+				}
+				return isEmpty;
+			});
+
+			if (isEmptyInput) {
 				return;
 			}
 
@@ -50,6 +63,7 @@ function SignInPage() {
 					name={'authenticationId'}
 					value={inputs.authenticationId}
 					onChange={handleChange}
+					isError={isSubmit && errors['authenticationId']}
 					children={
 						errors.authenticationId ? <p className="text-[0.7rem] text-red-400">아이디를 입력해주세요.</p> : null
 					}
@@ -60,6 +74,7 @@ function SignInPage() {
 					value={inputs.password}
 					isPassword={true}
 					onChange={handleChange}
+					isError={isSubmit && errors['password']}
 					children={errors.password ? <p className="text-[0.7rem] text-red-400">비밀번호를 입력해주세요.</p> : null}
 				/>
 			</div>

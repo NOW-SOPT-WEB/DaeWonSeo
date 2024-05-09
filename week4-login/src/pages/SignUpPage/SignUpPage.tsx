@@ -19,6 +19,7 @@ const initialInputs = {
 function SignUpPage() {
 	const { inputs, handleChange } = useInputs(initialInputs);
 	const { errors, setErrors } = useErrors(initialInputs);
+
 	const navigate = useNavigate();
 
 	const handleClickBack = (): void => {
@@ -32,6 +33,8 @@ function SignUpPage() {
 			if (isEmpty) {
 				setErrors((prev) => ({ ...prev, [key]: true }));
 				return isEmpty;
+			} else {
+				setErrors((prev) => ({ ...prev, [key]: false }));
 			}
 			return isEmpty;
 		});
@@ -43,7 +46,7 @@ function SignUpPage() {
 		}
 
 		if (!isValidatePassword) {
-			alert('비밀번호 조건을 확인해주세요!');
+			alert('비밀번호 형식(최소 8자 이상, 숫자, 문자(a-z,A-Z) 특수문자 포함)에 맞지 않습니다.');
 			return;
 		}
 

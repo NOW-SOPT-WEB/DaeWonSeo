@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { phoneNumberFormatter } from '@/utils';
-import { useErrors } from './useErrors';
+import { useErrors } from '@/hooks/useErrors';
 
 export const useInputs = <T extends Record<string, string>>(initialState: T) => {
 	const [inputs, setInputs] = useState<T>(initialState);
@@ -23,5 +23,5 @@ export const useInputs = <T extends Record<string, string>>(initialState: T) => 
 		}));
 	};
 
-	return { inputs, errors, handleChange, setInputs };
+	return { inputs, errors, setErrors, handleChange, setInputs };
 };

@@ -1,38 +1,15 @@
 import { AxiosError } from 'axios';
+
 import client from '@/services/client';
-
-interface Response {
-	code: number;
-	message: string;
-}
-
-interface ResponseWithData<T> extends Response {
-	data: T;
-}
-
-interface ResponseWithUserData {
-	authenticationId: string;
-	nickname: string;
-	phone: string;
-}
-
-interface SiginInData {
-	authenticationId: string;
-	password: string;
-}
-
-interface SignUpData {
-	authenticationId: string;
-	password: string;
-	nickname: string;
-	phone: string;
-}
-
-interface UserPasswordData {
-	previousPassword: string;
-	newPassword: string;
-	newPasswordVerification: string;
-}
+import {
+	Response,
+	ResponseWithData,
+	UserData,
+	ResponseWithUserData,
+	SiginInData,
+	SignUpData,
+	UserPasswordData,
+} from '@/services/auth/interfaces';
 
 export const userSignIn = async <T>(siginInData: SiginInData): Promise<ResponseWithData<T>> => {
 	try {
@@ -54,14 +31,14 @@ export const userSignUp = async (signUpData: SignUpData): Promise<Response> => {
 	}
 };
 
-export const getUserData = async <T>(memberId: number): Promise<ResponseWithUserData<T>> => {
+export const getUserData = async (memberId: number): Promise<UserData> => {
 	try {
-		const { data } = await client.get<ResponseWithUserData<T>>('member/info', {
+		const { data } = await client.get<ResponseWithUserData>('member/info', {
 			headers: {
 				memberId: memberId,
 			},
 		});
-		const { authenticationId, nickname, phone } = data.data as ResponseWithUserData;
+		const { authenticationId, nickname, phone } = data.data;
 		return { authenticationId, nickname, phone };
 	} catch (e) {
 		const error = e as AxiosError<Response>;
