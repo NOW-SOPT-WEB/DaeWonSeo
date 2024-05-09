@@ -70,6 +70,7 @@ function SignUpPage() {
 					title={'ID'}
 					value={inputs.authenticationId}
 					isError={errors.authenticationId}
+					isAlert={true}
 					onChange={handleChange}
 				/>
 				<UserInput
@@ -78,6 +79,7 @@ function SignUpPage() {
 					value={inputs.password}
 					isPassword={true}
 					isError={errors.password}
+					isAlert={true}
 					onChange={handleChange}
 					children={
 						<p className="text-[0.7rem] text-blue-400">
@@ -90,6 +92,7 @@ function SignUpPage() {
 					title={'닉네임'}
 					value={inputs.nickname}
 					isError={errors.nickname}
+					isAlert={true}
 					onChange={handleChange}
 				/>
 				<UserInput
@@ -97,6 +100,7 @@ function SignUpPage() {
 					title={'전화번호'}
 					value={inputs.phone}
 					isError={errors.phone}
+					isAlert={true}
 					onChange={handleChange}
 					children={<p className="text-[0.7rem] text-blue-400">전화번호 형식은 010-****-**** 입니다.</p>}
 				/>

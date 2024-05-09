@@ -6,16 +6,27 @@ interface UserInputProps {
 	value: string;
 	isPassword?: boolean;
 	isError?: boolean;
+	isAlert?: boolean;
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	children?: React.ReactNode;
 }
 
-function UserInput({ name, title, value, isPassword = false, isError = false, onChange, children }: UserInputProps) {
+function UserInput({
+	name,
+	title,
+	value,
+	isPassword = false,
+	isError = false,
+	isAlert = false,
+	onChange,
+
+	children,
+}: UserInputProps) {
 	const input = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		if (isError) {
-			alert(title + '을 입력해주세요!!');
+			if (isAlert) alert(title + '을 입력해주세요!!');
 			input.current?.focus();
 		}
 	}, [isError]);
