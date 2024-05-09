@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface UserInputProps {
 	name: string;
@@ -12,12 +12,13 @@ interface UserInputProps {
 
 function UserInput({ name, title, value, isPassword = false, isError = false, onChange, children }: UserInputProps) {
 	const input = useRef<HTMLInputElement>(null);
-	let inputStyle = 'h-full w-full rounded bg-main-gradient p-3 outline-none';
 
-	if (isError) {
-		input.current?.focus();
-		inputStyle += ' border-2 border-red-400';
-	}
+	useEffect(() => {
+		if (isError) {
+			alert(title + '을 입력해주세요!!');
+			input.current?.focus();
+		}
+	}, [isError]);
 
 	return (
 		<form className="flex h-10 w-5/6 items-center text-lg font-semibold ">
@@ -29,7 +30,7 @@ function UserInput({ name, title, value, isPassword = false, isError = false, on
 					value={value}
 					onChange={onChange}
 					type={isPassword ? 'password' : 'text'}
-					className={inputStyle}
+					className={`h-full w-full rounded bg-main-gradient p-3 outline-none ${isError ? 'border-2 border-red-400' : ''}`}
 				/>
 				{children}
 			</div>

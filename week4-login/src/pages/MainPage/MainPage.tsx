@@ -18,7 +18,7 @@ function MainPage() {
 	return (
 		<>
 			<div>
-				<video muted autoPlay loop>
+				<video muted autoPlay loop preload="auto">
 					<source src={video} />
 				</video>
 			</div>

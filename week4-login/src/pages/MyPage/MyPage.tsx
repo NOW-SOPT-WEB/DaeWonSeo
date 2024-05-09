@@ -35,7 +35,7 @@ function MyPage() {
 	};
 
 	const handleClickHome = (): void => {
-		navigate(MAIN_ROUTES.MAIN.path);
+		navigate(MAIN_ROUTES.MAIN.path.replace(':id', `${id}`));
 	};
 
 	const fetchUserData = async (id: number): Promise<void> => {

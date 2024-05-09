@@ -1,19 +1,11 @@
 import { useState } from 'react';
 
 import { phoneNumberFormatter } from '@/utils';
+import { useErrors } from './useErrors';
 
 export const useInputs = <T extends Record<string, string>>(initialState: T) => {
 	const [inputs, setInputs] = useState<T>(initialState);
-
-	const initialErrorsState = Object.keys(initialState).reduce(
-		(acc, key) => {
-			acc[key] = false;
-			return acc;
-		},
-		{} as Record<string, boolean>,
-	);
-
-	const [errors, setErrors] = useState<Record<string, boolean>>(initialErrorsState);
+	const { errors, setErrors } = useErrors(initialState);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;

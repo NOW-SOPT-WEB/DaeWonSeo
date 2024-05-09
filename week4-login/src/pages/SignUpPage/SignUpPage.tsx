@@ -7,6 +7,7 @@ import { useInputs } from '@/hooks/useInputs';
 import { userSignUp } from '@/services/auth';
 import { MAIN_ROUTES } from '@/constants/routes';
 import { validatePassword } from '@/utils';
+import { useErrors } from '@/hooks/useErrors';
 
 const initialInputs = {
 	authenticationId: '',
@@ -16,7 +17,8 @@ const initialInputs = {
 };
 
 function SignUpPage() {
-	const { inputs, errors, handleChange } = useInputs(initialInputs);
+	const { inputs, handleChange } = useInputs(initialInputs);
+	const { errors, setErrors } = useErrors(initialInputs);
 	const navigate = useNavigate();
 
 	const handleClickBack = (): void => {
@@ -24,11 +26,24 @@ function SignUpPage() {
 	};
 
 	const handleSignUp = async (): Promise<void> => {
-		const isInputsEmpty = Object.values(inputs).some((value) => value === '');
+		const isEmptyInput = Object.keys(inputs).some((key) => {
+			const inputKey = key as keyof typeof inputs;
+			const isEmpty = inputs[inputKey] === '';
+			if (isEmpty) {
+				setErrors((prev) => ({ ...prev, [key]: true }));
+				return isEmpty;
+			}
+			return isEmpty;
+		});
+
 		const isValidatePassword = validatePassword(inputs.password);
 
-		if (isInputsEmpty || !isValidatePassword) {
-			alert('입력 값을 확인해주세요~');
+		if (isEmptyInput) {
+			return;
+		}
+
+		if (!isValidatePassword) {
+			alert('비밀번호 조건을 확인해주세요!');
 			return;
 		}
 
