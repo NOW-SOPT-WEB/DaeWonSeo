@@ -32,7 +32,7 @@ function UserInput({
 	}, [isError]);
 
 	return (
-		<form className="flex h-10 w-5/6 items-center text-lg font-semibold ">
+		<div className="flex h-10 w-5/6 items-center text-lg font-semibold ">
 			<h1 className="w-1/4 ">{title}</h1>
 			<div className="flex w-3/4 flex-col gap-4">
 				<input
@@ -45,7 +45,7 @@ function UserInput({
 				/>
 				{children}
 			</div>
-		</form>
+		</div>
 	);
 }
 

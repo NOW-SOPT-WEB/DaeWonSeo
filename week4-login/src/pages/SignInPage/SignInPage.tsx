@@ -27,7 +27,8 @@ function SignInPage() {
 		navigate(MAIN_ROUTES.SIGN_UP.path);
 	};
 
-	const handleClickSignIn = async (): Promise<void> => {
+	const handleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+		e.preventDefault();
 		try {
 			const isEmptyInput = Object.keys(inputs).some((key) => {
 				const inputKey = key as keyof typeof inputs;
@@ -57,31 +58,33 @@ function SignInPage() {
 		<>
 			<h1 className="mb-20 text-5xl font-bold">Login</h1>
 			<img src={loginImage} className="h-48 rounded" />
-			<div className="mt-20 flex h-full w-full flex-col items-center gap-14">
-				<UserInput
-					title={'ID'}
-					name={'authenticationId'}
-					value={inputs.authenticationId}
-					onChange={handleChange}
-					isError={errors['authenticationId']}
-					children={
-						errors.authenticationId ? <p className="text-[0.7rem] text-red-400">아이디를 입력해주세요.</p> : null
-					}
-				/>
-				<UserInput
-					title={'비밀번호'}
-					name={'password'}
-					value={inputs.password}
-					isPassword={true}
-					onChange={handleChange}
-					isError={errors['password']}
-					children={errors.password ? <p className="text-[0.7rem] text-red-400">비밀번호를 입력해주세요.</p> : null}
-				/>
-			</div>
-			<div className="flex gap-9">
-				<UserButton title={'로그인'} onClick={handleClickSignIn} />
-				<UserButton title={'회원가입'} onClick={handleClickSignUp} />
-			</div>
+			<form onSubmit={handleSignIn} className="flex h-full w-full flex-col items-center justify-center">
+				<div className="mt-20 flex h-full w-full flex-col items-center gap-14">
+					<UserInput
+						title={'ID'}
+						name={'authenticationId'}
+						value={inputs.authenticationId}
+						onChange={handleChange}
+						isError={errors['authenticationId']}
+						children={
+							errors.authenticationId ? <p className="text-[0.7rem] text-red-400">아이디를 입력해주세요.</p> : null
+						}
+					/>
+					<UserInput
+						title={'비밀번호'}
+						name={'password'}
+						value={inputs.password}
+						isPassword={true}
+						onChange={handleChange}
+						isError={errors['password']}
+						children={errors.password ? <p className="text-[0.7rem] text-red-400">비밀번호를 입력해주세요.</p> : null}
+					/>
+				</div>
+				<div className="flex gap-9">
+					<UserButton title={'로그인'} isSubmit={true} />
+					<UserButton title={'회원가입'} onClick={handleClickSignUp} />
+				</div>
+			</form>
 		</>
 	);
 }

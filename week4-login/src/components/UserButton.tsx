@@ -1,11 +1,15 @@
 interface UserButtonProps {
 	title: string;
-	onClick: () => void;
+	onClick?: () => void;
+	isSubmit?: boolean;
 }
 
-function UserButton({ title, onClick }: UserButtonProps) {
+function UserButton({ title, onClick, isSubmit = false }: UserButtonProps) {
 	return (
-		<button type="button" onClick={onClick} className="rounded bg-secondary px-6 py-3 font-medium text-black">
+		<button
+			type={isSubmit ? 'submit' : 'button'}
+			onClick={onClick}
+			className="rounded bg-secondary px-6 py-3 font-medium text-black">
 			{title}
 		</button>
 	);
