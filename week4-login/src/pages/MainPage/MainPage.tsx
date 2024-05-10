@@ -1,8 +1,9 @@
 import { useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import video from '@/assets/videos/week4-video.mp4';
 import UserButton from '@/components/UserButton';
 import { MAIN_ROUTES } from '@/constants/routes';
-import { useNavigate, useParams } from 'react-router-dom';
 
 function MainPage() {
 	const navigate = useNavigate();
