@@ -29,22 +29,22 @@ function SignInPage() {
 
 	const handleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault();
-		try {
-			const isEmptyInput = Object.keys(inputs).some((key) => {
-				const inputKey = key as keyof typeof inputs;
-				const isEmpty = inputs[inputKey] === '';
-				if (isEmpty) {
-					alert(message[inputKey] + '을 입력해주세요');
-					setErrors((prev) => ({ ...prev, [key]: true }));
-					return isEmpty;
-				} else {
-					setErrors((prev) => ({ ...prev, [key]: false }));
-				}
+		const isEmptyInput = Object.keys(inputs).some((key) => {
+			const inputKey = key as keyof typeof inputs;
+			const isEmpty = inputs[inputKey] === '';
+			if (isEmpty) {
+				alert(message[inputKey] + '을 입력해주세요');
+				setErrors((prev) => ({ ...prev, [key]: true }));
 				return isEmpty;
-			});
+			} else {
+				setErrors((prev) => ({ ...prev, [key]: false }));
+			}
+			return isEmpty;
+		});
 
-			if (isEmptyInput) return;
+		if (isEmptyInput) return;
 
+		try {
 			const memberId = await userSignIn(inputs);
 			navigate(MAIN_ROUTES.MAIN.path.replace(':id', `${memberId}`));
 		} catch (e) {
