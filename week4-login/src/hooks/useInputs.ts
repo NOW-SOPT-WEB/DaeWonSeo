@@ -10,11 +10,11 @@ export const useInputs = <T extends Record<string, string>>(initialState: T) => 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
-		const formattedValue = name === 'phone' ? phoneNumberFormatter(value) : value;
+		const formattedValue = name === 'phone' ? phoneNumberFormatter(value).trim() : value.trim();
 
 		setInputs((prev) => ({
 			...prev,
-			[name]: name === 'phone' ? formattedValue : value,
+			[name]: formattedValue,
 		}));
 
 		setErrors((prev) => ({
